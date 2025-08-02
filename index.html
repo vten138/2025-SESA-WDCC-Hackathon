@@ -1,22 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Debug Divas</title>
   <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Assistant&family=Jost&family=Lexend:wght@300&display=swap" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Assistant&family=Akaya+Kanadaka&family=Jost&family=Lexend:wght@300&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap" rel="stylesheet">
+
+
+
 
 
   <style>
     body {
-      
       background-image: url('images/image2.svg');
       background-size: cover;
       background-repeat: no-repeat;
       background-position: center;
-      font-family: 'Akaya Kanadaka', cursive, sans-serif;
+      font-family: 'Fredoka', sans-serif;
+       font-weight: 700; 
+      
 
       color: #333;
       margin: 0;
@@ -28,8 +34,10 @@
       align-items: center;
     }
 
+    
+
     .container {
-      margin-bottom: 100px;
+      margin-bottom: 130px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -43,14 +51,14 @@
 
     .button {
       padding: 40px 70px;
-      background-color: #ff9661;
+      background-color: #fa9566;
       color: white;
       text-decoration: none;
       border-radius: 50px;
       font-weight: bold;
       cursor: pointer;
       border: none;
-      font-size: 28px;
+      font-size: 30px;
     }
 
     .button:hover {
@@ -62,93 +70,110 @@
     }
 
     input[type="time"] {
-  padding: 20px 30px;
-  font-size: 24px;
-  border-radius: 50px;
-  border: none;
-  outline: none;
-  text-align: center;
-  background-color: #ff9661;
-  color: white;
-  font-family: 'Akaya Kanadaka', cursive, sans-serif;
+      padding: 20px 30px;
+      font-size: 24px;
+      border-radius: 50px;
+      border: none;
+      outline: none;
+      text-align: center;
+      background-color: #ff9661;
+      color: white;
+      font-family: 'Fredoka', sans-serif;
 
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  margin-top: 20px; 
-}
-#muteBtn {
-  position: absolute;
-  top: 60px;
-  right: 60px;
-  background-color: rgba(255, 150, 97, 0.9);
-  border: none;
-  border-radius: 50%;
-  font-size: 40px;
-  padding: 25px;
-  cursor: pointer;
-  color: white;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-  z-index: 1000;
-  transition: background-color 0.3s ease;
-}
 
-#muteBtn:hover {
-  background-color: #b35628;
-}
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      margin-top: 20px;
+    }
 
+    #muteBtn {
+      position: absolute;
+      top: 20px;
+      right: 0;
+      transform: translateX(50%);
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      z-index: 1000;
+    }
+
+    #muteBtn img {
+      width: 300px;
+      height: 300px;
+      object-fit: contain;
+      display: block;
+    }
+
+    #muteBtn:hover img {
+      opacity: 0.7;
+    }
   </style>
 </head>
 
-
-
-
 <body>
 
- <audio id="bgAudio" loop>
-  <source src="audio/candy-crush.mp3" type="audio/mpeg" />
-</audio>
+  <audio id="bgAudio" loop>
+    <source src="audio/candy-crush.mp3" type="audio/mpeg" />
+  </audio>
 
-<button id="muteBtn" onclick="toggleMute()">🔊</button>
+  <button id="muteBtn" onclick="toggleMute()">
+    <img id="muteIcon" src="images/sound-on.svg" alt="Sound Icon" />
+  </button>
 
+  <div class="container">
+    <div class="button-row">
+      <button class="button" onclick="toggleTimeInput(); startAudio();">
+        Enter journey time
+      </button>
 
-<div class="container">
-  <div class="button-row">
-    <button class="button" onclick="toggleTimeInput(); startAudio();">Enter journey time</button>
-    <a href="map.html" class="button" onclick="startAudio()">Play!</a>
+      <a href="map.html" class="button" onclick="startAudio()">Play!</a>
+    </div>
+
+    <div id="timeInputContainer">
+      <input type="time" id="tripTime" />
+    </div>
   </div>
-
-  <div id="timeInputContainer">
-    <input type="time" id="tripTime" />
-  </div>
-</div>
-
 
   <script>
-  const bgAudio = document.getElementById('bgAudio');
+    const bgAudio = document.getElementById('bgAudio');
 
-  function toggleMute() {
-  bgAudio.muted = !bgAudio.muted;
-  const btn = document.getElementById('muteBtn');
-  btn.textContent = bgAudio.muted ? '🔇' : '🔊';
-}
-
-
-  function startAudio() {
-    if (bgAudio.paused) {
-      bgAudio.volume = 0.5;
-      bgAudio.play().catch((e) => {
-        console.log("Audio playback failed:", e);
-      });
+    function toggleMute() {
+      bgAudio.muted = !bgAudio.muted;
+      const icon = document.getElementById('muteIcon');
+      icon.src = bgAudio.muted ? 'images/sound-off.svg' : 'images/sound-on.svg';
     }
-  }
 
-  // Listen for any user click to start the audio
-  window.addEventListener('click', () => {
-    startAudio();
-  }, { once: true }); // run only once
-</script>
+    async function startAudio() {
+      if (bgAudio.paused) {
+        bgAudio.volume = 0.8;
+        try {
+          await bgAudio.play();
+        } catch (e) {
+          console.log("Audio playback failed:", e);
+        }
+      }
+    }
 
+    function toggleTimeInput() {
+      const input = document.getElementById("timeInputContainer");
+      input.style.display = input.style.display === "none" ? "block" : "none";
+    }
 
+    // Start audio on first user interaction anywhere
+    function startAudioOnFirstInteraction() {
+      startAudio();
+      // Remove event listeners once triggered
+      window.removeEventListener('click', startAudioOnFirstInteraction);
+      window.removeEventListener('keydown', startAudioOnFirstInteraction);
+      window.removeEventListener('touchstart', startAudioOnFirstInteraction);
+    }
 
+    window.addEventListener('click', startAudioOnFirstInteraction, { once: true });
+    window.addEventListener('keydown', startAudioOnFirstInteraction, { once: true });
+    window.addEventListener('touchstart', startAudioOnFirstInteraction, { once: true });
+
+  </script>
 
 </body>
+
 </html>
