@@ -9,6 +9,7 @@ body {
   background-color: #FCFAF9;
   color: black;
   font-family: 'Assistant', sans-serif;
+  text-decoration: none;
 }
 
 h1 {
@@ -20,6 +21,15 @@ h2 {
   font-size: 3rem;
   font-weight: 900;
   font-family: sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+a:active {
+  color: white;
 }
 
 .button {
@@ -41,14 +51,15 @@ h2 {
 
 #cake-bg {
   background-color: #e3f2ff;
+  overflow: hidden;
 }
 
 #cake-title {
   position: absolute;
   font-family: monospace;
   font-weight: 900;
-  left:20px;
-  top: 0;
+  left:1vw;
+  top: 1vw;
 }
 
 #cake-categories {
@@ -61,7 +72,7 @@ h2 {
   gap: 20px;
 }
 .cake-div-lrg {
-  width: 35%;
+  width: 90%;
   height: 40vw;
   margin: 10px;
   background-color: #79a5d6;
@@ -102,6 +113,63 @@ h2 {
   font-weight: 800;
   text-align: center;
   
+}
+
+#blue-bg {
+  position: absolute;
+  top: 15vh;
+  background: #79a5d6;
+  border-radius: 30px;
+  width: 90%;
+  height: 80%;
+  z-index: 0;
+}
+
+.table {
+  position: absolute;
+  top: 70vh;
+  width: 70vw;
+}
+
+.ingredients {
+  width: 140px;
+  height: auto;
+  gap: 10px;
+}
+
+#milk {
+  position: relative;
+  left: 2vw;
+  width: 130px;
+}
+
+#sugar {
+  position: relative;
+  left: 11vw;
+  top: -8vh;
+  width: 120px;
+}
+#bowl {
+  position: relative;
+  left: 4vw;
+  top: -3vh;
+  width: 230px;
+}
+#flour {
+  position: relative;
+  left: 4vw;
+}
+#whisk {
+  position: relative;
+  left: 3vw;
+  top: 3vh;
+}
+.ingredients-container {
+  width: 60vw;
+  position: absolute;
+  top: 62vh;
+  height: 30vh;
+  z-index: 6;
 }
 
 .highlight {
