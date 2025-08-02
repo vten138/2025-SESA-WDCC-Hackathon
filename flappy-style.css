@@ -57,7 +57,7 @@
   background-color: #4e83ff;
   border-radius: 10px;
   font-size: 40px;
-  font-family: 'Lexend', 'Akaya Kanadaka', sans-serif;
+  font-family: 'Fredoka', sans-serif;
   color: white;
   z-index: 100;
 }
@@ -70,6 +70,7 @@
   background-color: #ff9661;
   border-radius: 10px;
   font-size: 20px;
+  font-family: 'Fredoka', sans-serif;
   color: white;
   z-index: 200; 
   cursor: pointer;
@@ -83,6 +84,7 @@
   background-color: #ff9661;
   border-radius: 10px;
   font-size: 20px;
+  font-family: 'Fredoka', sans-serif;
   color: white;
   z-index: 200; 
   cursor: pointer;
@@ -104,7 +106,7 @@
   align-items: center;
   justify-content: center;
   color: white;
-  font-family: 'Lexend', sans-serif;
+  font-family: 'Fredoka', sans-serif;
   font-size: 48px;
   z-index: 999;
 }
@@ -113,6 +115,7 @@
   margin: 20px;
   padding: 12px 24px;
   font-size: 20px;
+  font-family: 'Fredoka', sans-serif;
   background-color: #ff7043;
   color: white;
   border: none;
@@ -160,6 +163,7 @@
   margin: 20px;
   padding: 12px 24px;
   font-size: 20px;
+  font-family: 'Fredoka', sans-serif;
   background-color: #4caf50;
   color: white;
   border: none;
