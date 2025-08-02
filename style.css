@@ -23,7 +23,7 @@ h2 {
 }
 
 .button {
-  background-color: #a5d687; /* Hot pink */
+  background-color: #a5d687; 
   color: white;
   border: none;
   padding: 12px 24px;
@@ -36,7 +36,7 @@ h2 {
 }
 
 .button:hover {
-  background-color: #a5d687; /* Lighter pink on hover */
+  background-color: #a5d687;
 }
 
 #cake-bg {
