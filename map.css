@@ -1,0 +1,59 @@
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;                          /* Full viewport height */
+  display: flex;                         /* Enable Flexbox */
+  flex-direction: column;               /* Stack content vertically */
+  background-color: #FCFAF9;
+  color: black;
+  font-family: 'Assistant', sans-serif;
+}
+
+h1 {
+  font-family: 'Lexend', sans-serif;
+  font-size: 2rem;
+  text-align: left;
+  align-items: left;
+}
+
+.button1 {
+  background-color: #ff69b4; /* Hot pink */
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 1rem;
+  border-radius: 8px;
+  text-decoration: none;
+  cursor: pointer;
+  font-family: 'Lexend', sans-serif;
+  transition: background-color 0.3s ease;
+  max-width: 150px;
+}
+
+.button1:hover {
+  background-color: #ff85c1; /* Lighter pink on hover */
+}
+
+#mydiv {
+  position: absolute;
+  font-size: 2rem;
+  z-index: 10;
+}
+
+svg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+#countdown {
+  font-size: 2rem;
+  color: white;
+  background-color: rgb(68, 68, 119, 0.5);
+  padding: 10px 20px;
+  display: inline-block;
+  border-radius: 10px;
+  font-family: 'Jost', sans-serif;
+  max-width: 148px;
+}

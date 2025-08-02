@@ -4,13 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Debug Divas</title>
-  <link rel="stylesheet" href="style.css"> <!-- Link to your CSS -->
+  <link rel="stylesheet" href="map.css"> <!-- Link to your CSS -->
   <link href="https://fonts.googleapis.com/css2?family=Assistant&family=Jost&family=Lexend:wght@300&display=swap" rel="stylesheet">
   <script type="mpy" src="main.py"></script>
 </head>
 <body>
 
-  <h1>Map</h1>
+  <!-- <h1>Map</h1> -->
+
+  <div id="countdown">Loading...</div>
+
   <!-- SVG sine wave path -->
   <svg id="sine-svg" width="100%" height="100%">
     <path id="sine-path" d="" stroke="transparent" stroke-width="2" fill="none"/>
@@ -18,10 +21,37 @@
 
   <!-- Moving icon -->
   <div id="mydiv">
-    <img src="car.png" alt="Car" style="width: 40px; height: auto;">
+    <img src="car.svg" alt="Car" style="width: 300px; height: auto;">
   </div>
 
   <script>
+
+    // Set the countdown time: 2 hours from now
+    const endTime = new Date().getTime() + 1 * 60 * 60 * 1000;
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const timeLeft = endTime - now;
+
+      if (timeLeft <= 0) {
+        document.getElementById("countdown").textContent = "Time's up!";
+        return;
+      }
+
+      const hours = Math.floor(timeLeft / (1000 * 60 * 60));
+      const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+      document.getElementById("countdown").textContent =
+        `${hours.toString().padStart(2, '0')}:${minutes
+          .toString()
+          .padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+
+      setTimeout(updateCountdown, 1000); // update every second
+    }
+
+    updateCountdown();
+
     const adiv = document.getElementById("mydiv");
     const sinePath = document.getElementById("sine-path");
 
@@ -37,10 +67,10 @@
     let leftPos = 0;
 
     function moveDiv() {
-      const downPos = 300 * Math.sin(leftPos * 0.007) + window.innerHeight / 2;
+      const downPos = 300 * Math.sin(leftPos * 0.007) + window.innerHeight / 2 - 100;
       adiv.style.left = leftPos + "px";
       adiv.style.top = downPos + "px";
-      leftPos += 1;
+      leftPos += 0.1;
       if (leftPos > window.innerWidth + 100) leftPos = -100;
       requestAnimationFrame(moveDiv);
     }
@@ -49,8 +79,10 @@
 
   </script>
 
-  <a href="game1.html" class="button">Go to Game 1</a>
-  <a href="game2.html" class="button">Go to Game 2</a>
+
+
+  <a href="game1.html"></a> <img src="your-image.png" alt="Go to Game 1"</a>
+  <a href="game2.html" class="button2">Go to Game 2</a>
 
 </body>
 </html>
