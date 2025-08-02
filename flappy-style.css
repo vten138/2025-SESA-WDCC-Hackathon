@@ -1,0 +1,68 @@
+body {
+  margin: 0;
+  overflow: hidden;
+  background-color: skyblue;
+}
+
+#game-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-image: linear-gradient(skyblue, lightgreen);
+}
+
+#bird {
+  position: absolute;
+  width: 60px;               /* ← smaller visual size */
+  height: 60px;
+  background-image: url("images/flappy/pacman.gif");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  top: 200px;
+  left: 150px;               /* this should match birdX in JS */
+  z-index: 10;
+}
+
+.pipe {
+  position: absolute;
+  width: 100px;
+  background-color: green; /* fallback */
+  z-index: 2;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%; /* ← ADD THIS LINE */
+}
+
+.pipe.top {
+  top: 0;
+  /* background-image: url('images/flappy/pipe-up.png'); */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+}
+
+.pipe.bottom {
+  bottom: 0;
+  /* background-image: url('images/flappy/pipe-down.png'); */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+}
+
+#score {
+  position: fixed;
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 60px;      
+  font-family: sans-serif;
+  color: white;
+  text-shadow: 3px 3px 6px black;
+  z-index: 100;
+}
