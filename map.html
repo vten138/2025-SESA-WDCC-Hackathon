@@ -21,13 +21,13 @@
 
   <!-- Moving icon -->
   <div id="mydiv">
-    <img src="car.svg" alt="Car" style="width: 300px; height: auto;">
+    <img id="carImg" img src="car.svg" alt="Car" style="width: 500px; height: auto;">
   </div>
 
   <script>
 
     // Set the countdown time: 2 hours from now
-    const endTime = new Date().getTime() + 1 * 60 * 60 * 1000;
+    const endTime = new Date().getTime() + 0.5 * 60 * 60 * 1000;
 
     function updateCountdown() {
       const now = new Date().getTime();
@@ -54,32 +54,48 @@
 
     const adiv = document.getElementById("mydiv");
     const sinePath = document.getElementById("sine-path");
+    const carImg = adiv.querySelector("img");
 
     // Draw sine wave path
     let pathData = "";
     for (let x = 0; x <= window.innerWidth; x++) {
-      const y = 300 * Math.sin(x * 0.007) + window.innerHeight / 2;
+      const y = 290 * Math.sin(x * 0.01) + window.innerHeight / 2;
       pathData += (x === 0 ? "M" : "L") + x + "," + y + " ";
     }
     sinePath.setAttribute("d", pathData);
 
     // Animate icon along the same curve
-    let leftPos = 0;
+    let leftPos = 10;
+    let rotation = 45;
 
     function moveDiv() {
-      const downPos = 300 * Math.sin(leftPos * 0.007) + window.innerHeight / 2 - 100;
-      adiv.style.left = leftPos + "px";
-      adiv.style.top = downPos + "px";
-      leftPos += 0.1;
-      if (leftPos > window.innerWidth + 100) leftPos = -100;
+      const sineValue = Math.sin(leftPos * 0.007 + 0.3);
+      const downPos = 252 * Math.sin(leftPos * 0.007 + 0.3) + window.innerHeight / 2 - 180;
+      
+      // adiv.style.left = leftPos + "px";
+      // adiv.style.top = downPos + "px";
+
+      if (sineValue > 0.9) {
+        rotation = -45; // max of sine wave
+      } else if (sineValue < -0.9) {
+        rotation = 45; // min of sine wave
+      }
+
+      adiv.style.transform = `translate(${leftPos}px, ${downPos}px)`;
+      carImg.style.transform = `rotate(${rotation}deg)`;
+
+      leftPos += 0.05;
+      if (leftPos > window.innerWidth - 380) {
+        leftPos = -100;
+        rotation = 45;
+        // carImg.style.transform = `rotate(${rotation}deg)`;
+      }
       requestAnimationFrame(moveDiv);
     }
 
     requestAnimationFrame(moveDiv);
 
   </script>
-
-
 
   <a href="game1.html"></a> <img src="your-image.png" alt="Go to Game 1"</a>
   <a href="game2.html" class="button2">Go to Game 2</a>
