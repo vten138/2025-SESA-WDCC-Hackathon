@@ -74,26 +74,41 @@
 
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
   margin-top: 20px; 
-}
-#muteBtn {
+}#muteBtn {
   position: absolute;
-  top: 60px;
-  right: 60px;
+  top: 20px;
+  right: 20px;
   background-color: rgba(255, 150, 97, 0.9);
   border: none;
   border-radius: 50%;
-  font-size: 40px;
-  padding: 25px;
   cursor: pointer;
-  color: white;
   box-shadow: 0 4px 6px rgba(0,0,0,0.2);
   z-index: 1000;
   transition: background-color 0.3s ease;
+  
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  
+  width: 200px;  /* at least image size */
+  height: 200px;
+  
+  padding: 0;
+  overflow: hidden; /* prevent overflow */
 }
+
+#muteBtn img {
+  width: 180px;
+  height: 180px;
+  display: block;
+  object-fit: contain; /* scale image nicely */
+}
+
 
 #muteBtn:hover {
   background-color: #b35628;
 }
+
 
   </style>
 </head>
@@ -107,7 +122,10 @@
   <source src="audio/candy-crush.mp3" type="audio/mpeg" />
 </audio>
 
-<button id="muteBtn" onclick="toggleMute()">🔊</button>
+<button id="muteBtn" onclick="toggleMute()">
+  <img id="muteIcon" src="images/sound-on.svg" alt="Sound Icon" />
+</button>
+
 
 
 <div class="container">
@@ -127,9 +145,10 @@
 
   function toggleMute() {
   bgAudio.muted = !bgAudio.muted;
-  const btn = document.getElementById('muteBtn');
-  btn.textContent = bgAudio.muted ? '🔇' : '🔊';
+  const icon = document.getElementById('muteIcon');
+  icon.src = bgAudio.muted ? 'images/sound-off.svg' : 'images/sound-on.svg';
 }
+
 
 
   function startAudio() {
