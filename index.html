@@ -8,16 +8,13 @@
   <link href="https://fonts.googleapis.com/css2?family=Assistant&family=Jost&family=Lexend:wght@300&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Assistant&family=Akaya+Kanadaka&family=Jost&family=Lexend:wght@300&display=swap" rel="stylesheet" />
 
-
   <style>
     body {
-      
       background-image: url('images/image2.svg');
       background-size: cover;
       background-repeat: no-repeat;
       background-position: center;
       font-family: 'Akaya Kanadaka', cursive, sans-serif;
-
       color: #333;
       margin: 0;
       padding: 0;
@@ -62,112 +59,93 @@
     }
 
     input[type="time"] {
-  padding: 20px 30px;
-  font-size: 24px;
-  border-radius: 50px;
-  border: none;
-  outline: none;
-  text-align: center;
-  background-color: #ff9661;
-  color: white;
-  font-family: 'Akaya Kanadaka', cursive, sans-serif;
+      padding: 20px 30px;
+      font-size: 24px;
+      border-radius: 50px;
+      border: none;
+      outline: none;
+      text-align: center;
+      background-color: #ff9661;
+      color: white;
+      font-family: 'Akaya Kanadaka', cursive, sans-serif;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      margin-top: 20px; 
+    }
 
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  margin-top: 20px; 
-}#muteBtn {
+    #muteBtn {
   position: absolute;
   top: 20px;
-  right: 20px;
-  background-color: rgba(255, 150, 97, 0.9);
+  right: 0;
+  transform: translateX(50%); /* Pushes it half its width beyond the right edge */
+  background: none;
   border: none;
-  border-radius: 50%;
   cursor: pointer;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-  z-index: 1000;
-  transition: background-color 0.3s ease;
-  
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  
-  width: 200px;  /* at least image size */
-  height: 200px;
-  
   padding: 0;
-  overflow: hidden; /* prevent overflow */
-}
-
-#muteBtn img {
-  width: 180px;
-  height: 180px;
-  display: block;
-  object-fit: contain; /* scale image nicely */
+  z-index: 1000;
 }
 
 
-#muteBtn:hover {
-  background-color: #b35628;
-}
+    #muteBtn img {
+      width: 300px;
+      height: 300px;
+      object-fit: contain;
+      display: block;
+    }
 
-
+    #muteBtn:hover img {
+      opacity: 0.7;
+    }
   </style>
 </head>
 
-
-
-
 <body>
 
- <audio id="bgAudio" loop>
-  <source src="audio/candy-crush.mp3" type="audio/mpeg" />
-</audio>
+  <audio id="bgAudio" loop>
+    <source src="audio/candy-crush.mp3" type="audio/mpeg" />
+  </audio>
 
-<button id="muteBtn" onclick="toggleMute()">
-  <img id="muteIcon" src="images/sound-on.svg" alt="Sound Icon" />
-</button>
+  <button id="muteBtn" onclick="toggleMute()">
+    <img id="muteIcon" src="images/sound-on.svg" alt="Sound Icon" />
+  </button>
 
+  <div class="container">
+    <div class="button-row">
+      <button class="button" onclick="toggleTimeInput(); startAudio();">Enter journey time</button>
+      <a href="map.html" class="button" onclick="startAudio()">Play!</a>
+    </div>
 
-
-<div class="container">
-  <div class="button-row">
-    <button class="button" onclick="toggleTimeInput(); startAudio();">Enter journey time</button>
-    <a href="map.html" class="button" onclick="startAudio()">Play!</a>
+    <div id="timeInputContainer">
+      <input type="time" id="tripTime" />
+    </div>
   </div>
-
-  <div id="timeInputContainer">
-    <input type="time" id="tripTime" />
-  </div>
-</div>
-
 
   <script>
-  const bgAudio = document.getElementById('bgAudio');
+    const bgAudio = document.getElementById('bgAudio');
 
-  function toggleMute() {
-  bgAudio.muted = !bgAudio.muted;
-  const icon = document.getElementById('muteIcon');
-  icon.src = bgAudio.muted ? 'images/sound-off.svg' : 'images/sound-on.svg';
-}
-
-
-
-  function startAudio() {
-    if (bgAudio.paused) {
-      bgAudio.volume = 0.5;
-      bgAudio.play().catch((e) => {
-        console.log("Audio playback failed:", e);
-      });
+    function toggleMute() {
+      bgAudio.muted = !bgAudio.muted;
+      const icon = document.getElementById('muteIcon');
+      icon.src = bgAudio.muted ? 'images/sound-off.svg' : 'images/sound-on.svg';
     }
-  }
 
-  // Listen for any user click to start the audio
-  window.addEventListener('click', () => {
-    startAudio();
-  }, { once: true }); // run only once
-</script>
+    function startAudio() {
+      if (bgAudio.paused) {
+        bgAudio.volume = 0.5;
+        bgAudio.play().catch((e) => {
+          console.log("Audio playback failed:", e);
+        });
+      }
+    }
 
+    function toggleTimeInput() {
+      const input = document.getElementById("timeInputContainer");
+      input.style.display = input.style.display === "none" ? "block" : "none";
+    }
 
-
+    window.addEventListener('click', () => {
+      startAudio();
+    }, { once: true });
+  </script>
 
 </body>
 </html>
