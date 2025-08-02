@@ -6,13 +6,15 @@
   <title>Debug Divas</title>
   <link rel="stylesheet" href="map.css"> <!-- Link to your CSS -->
   <link href="https://fonts.googleapis.com/css2?family=Assistant&family=Jost&family=Lexend:wght@300&display=swap" rel="stylesheet">
-  <script type="mpy" src="main.py"></script>
 </head>
 <body>
 
   <!-- <h1>Map</h1> -->
 
   <div id="countdown">Loading...</div>
+
+  <button onclick="resetCar()">Reset Car</button>
+
 
   <!-- SVG sine wave path -->
   <svg id="sine-svg" width="100%" height="100%">
@@ -21,13 +23,34 @@
 
   <!-- Moving icon -->
   <div id="mydiv">
-    <img id="carImg" img src="car.svg" alt="Car" style="width: 500px; height: auto;">
+    <img id="carImg" src="car.svg" alt="Car" style="width: 500px; height: auto;">
   </div>
+
+  <a id="bakery-link" href="game1.html" style="position: absolute; left: 5%; top: 20%;">
+    <img id="bakery" src="images/building_images/6.svg" alt="Go to Game 1">
+  </a>
+    
+  <a id="clothing-link" href="game2.html" style="position: absolute; left: 50%; top: 2%;">
+    <img id="clothing" src="images/building_images/7.svg" alt="Go to Game 2">
+  </a>
+  
+  <a id="pet-link" href="game3.html" style="position: absolute; left: 30%; top: 50%;">
+    <img id="pet" src="images/building_images/8.svg" alt="Go to Game 3">
+  </a>
+
+  <audio id="clickSound" src="audio/click.wav" preload="auto"></audio>
 
   <script>
 
     // Set the countdown time: 2 hours from now
-    const endTime = new Date().getTime() + 0.5 * 60 * 60 * 1000;
+    let endTime = localStorage.getItem("endTime");
+
+    if (!endTime) {
+      endTime = new Date().getTime() + 0.25 * 60 * 60 * 1000; // 15 minutes
+      localStorage.setItem("endTime", endTime);
+    } else {
+      endTime = parseInt(endTime); // convert string back to number
+    }
 
     function updateCountdown() {
       const now = new Date().getTime();
@@ -55,7 +78,7 @@
     const adiv = document.getElementById("mydiv");
     const sinePath = document.getElementById("sine-path");
     const carImg = adiv.querySelector("img");
-
+    
     // Draw sine wave path
     let pathData = "";
     for (let x = 0; x <= window.innerWidth; x++) {
@@ -64,21 +87,29 @@
     }
     sinePath.setAttribute("d", pathData);
 
+    function instantRotate(angle) {
+      carImg.style.transition = "none";           // Disable transition
+      carImg.style.transform = `rotate(${angle}deg)`;  // Set rotation instantly
+      carImg.offsetHeight;                         // Force reflow to apply immediately
+      carImg.style.transition = "transform 40s ease"; // Restore transition
+    }
+
+    let savedRotation = parseFloat(localStorage.getItem("carRotation")) || 45;
+    instantRotate(savedRotation);
+
     // Animate icon along the same curve
-    let leftPos = 10;
-    let rotation = 45;
+    let leftPos = parseFloat(localStorage.getItem("carLeft")) || 10;
+    let rotation = parseFloat(localStorage.getItem("carRotation")) || 45;
+
 
     function moveDiv() {
       const sineValue = Math.sin(leftPos * 0.007 + 0.3);
-      const downPos = 252 * Math.sin(leftPos * 0.007 + 0.3) + window.innerHeight / 2 - 180;
-      
-      // adiv.style.left = leftPos + "px";
-      // adiv.style.top = downPos + "px";
+      const downPos = 200 * Math.sin(leftPos * 0.009 + 0.3) + window.innerHeight / 2 - 180;
 
-      if (sineValue > 0.9) {
-        rotation = -45; // max of sine wave
-      } else if (sineValue < -0.9) {
-        rotation = 45; // min of sine wave
+      if (sineValue > 0.8) {
+        rotation = -45;
+      } else if (sineValue < -0.8) {
+        rotation = 45;
       }
 
       adiv.style.transform = `translate(${leftPos}px, ${downPos}px)`;
@@ -88,17 +119,54 @@
       if (leftPos > window.innerWidth - 380) {
         leftPos = -100;
         rotation = 45;
-        // carImg.style.transform = `rotate(${rotation}deg)`;
       }
+
+      // Update localStorage on every frame
+      localStorage.setItem("carLeft", leftPos);
+      localStorage.setItem("carRotation", rotation);
+
       requestAnimationFrame(moveDiv);
     }
 
     requestAnimationFrame(moveDiv);
 
-  </script>
 
-  <a href="game1.html"></a> <img src="your-image.png" alt="Go to Game 1"</a>
-  <a href="game2.html" class="button2">Go to Game 2</a>
+    const clickSound = document.getElementById('clickSound');
+    ['bakery-link', 'clothing-link', 'pet-link'].forEach(id => {
+      const link = document.getElementById(id);
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        clickSound.currentTime = 0;
+        clickSound.play();
+
+        setTimeout(() => {
+          window.location = link.href;
+        }, 150); // give sound time to play
+      });
+    });
+
+
+
+
+    function resetCar() {
+      localStorage.setItem("carLeft", 10);
+      localStorage.setItem("carRotation", 45);
+
+      // Immediately update leftPos and rotation in script's scope
+      leftPos = 10;
+      rotation = 45;
+
+      // Optionally reset the position & rotation of the car immediately
+      adiv.style.transform = `translate(${leftPos}px, ${window.innerHeight / 2 - 180}px)`;
+      carImg.style.transform = `rotate(${rotation}deg)`;
+
+      // Reset timer
+      const newEndTime = new Date().getTime() + 0.25 * 60 * 60 * 1000; // 15 minutes from now (or change as needed)
+      localStorage.setItem("endTime", newEndTime);
+      location.reload();
+}
+
+  </script>
 
 </body>
 </html>
