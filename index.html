@@ -4,12 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Debug Divas</title>
-  <link rel="stylesheet" href="style.css"> <!-- Link to your CSS -->
+  <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Assistant&family=Jost&family=Lexend:wght@300&display=swap" rel="stylesheet">
 
   <style>
     body {
-      background-image: url('images/image1.gif'); /* Use your actual path */
+      background-image: url('images/image3.jpg');
       background-size: cover;
       background-repeat: no-repeat;
       background-position: center;
@@ -32,20 +32,45 @@
       text-decoration: none;
       border-radius: 10px;
       font-weight: bold;
-      margin-top: 20px;
+      margin: 10px;
     }
 
     .button:hover {
-      background-color: #e0559d;
+      background-color: #a5d687;
+    }
+
+    #timeInputContainer {
+      margin-top: 20px;
+    }
+
+    input[type="time"] {
+      padding: 8px;
+      border-radius: 8px;
+      border: 1px solid #a5d687;
+      font-size: 16px;
+      margin-top: 10px;
     }
   </style>
 </head>
 <body>
 
-  <h1>Are We There Yet?</h1>
-  <p>This is your starter HTML page.</p>
+  <!-- Button to show time input -->
+  <button class="button" onclick="toggleTimeInput()">Enter Time</button>
 
+  <!-- Time input field (initially hidden) -->
+  <div id="timeInputContainer" style="display: none;">
+    <input type="time" id="tripTime">
+  </div>
+
+  <!-- Go to Main button -->
   <a href="map.html" class="button">Go to Main</a>
+
+  <script>
+    function toggleTimeInput() {
+      const container = document.getElementById('timeInputContainer');
+      container.style.display = container.style.display === 'none' ? 'block' : 'none';
+    }
+  </script>
 
 </body>
 </html>
