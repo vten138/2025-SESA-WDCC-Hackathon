@@ -87,6 +87,11 @@ function createPipe() {
     }
   }
 
+  const menuButton = document.getElementById('menu-button');
+  menuButton.addEventListener('click', () => {
+    window.location.href = 'index.html';
+  });
+  
   if (!hasScored && pipeX + pipeWidth < birdX) {
       score++;
       hasScored = true;
@@ -96,14 +101,16 @@ function createPipe() {
       scoreAudio.play().catch((err) =>
         console.warn("Audio play failed:", err)
       );
+
+      if (score === 2) showWinScreen();
     }
   }, 20);
 }
 
 function gameOver() {
-  alert('Game Over');
   isGameOver = true;
-  window.location.reload();
+  const gameOverScreen = document.getElementById('game-over-screen');
+  gameOverScreen.style.display = 'flex';
 }
 
 function getRandomColor() {
@@ -128,15 +135,39 @@ setInterval(() => {
 
 createPipe();
 
-const menuButton = document.getElementById('menu-button');
+const pauseButton = document.getElementById('pause-button');
 
-menuButton.addEventListener('click', () => {
+pauseButton.addEventListener('click', () => {
   isPaused = !isPaused;
 
   // Optional: change button text while paused
   if (isPaused) {
-    menuButton.textContent = 'Resume';
+    pauseButton.textContent = 'Resume';
   } else {
-    menuButton.textContent = 'Pause';
+    pauseButton.textContent = 'Pause';
   }
+});
+
+document.getElementById('restart-button').addEventListener('click', () => {
+  window.location.reload(); // Restart game
+});
+
+document.getElementById('home-button').addEventListener('click', () => {
+  window.location.href = 'index.html'; // Or your main menu file
+});
+
+function showWinScreen() {
+  const winAudio = new Audio('audio/you-win.mp3');
+  document.getElementById('win-screen').style.display = 'flex';
+  winAudio.volume = 0.8;
+  winAudio.play().catch((err) => console.warn("Audio play failed:", err));
+  isGameOver = true;
+}
+
+document.getElementById('restart-win').addEventListener('click', () => {
+  window.location.reload(); // Restart game
+});
+
+document.getElementById('home-win').addEventListener('click', () => {
+  window.location.href = 'index.html'; // Or your main menu
 });
