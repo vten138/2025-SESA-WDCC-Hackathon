@@ -6,6 +6,8 @@
   <title>Debug Divas</title>
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Assistant&family=Jost&family=Lexend:wght@300&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Assistant&family=Akaya+Kanadaka&family=Jost&family=Lexend:wght@300&display=swap" rel="stylesheet" />
+
 
   <style>
     body {
@@ -13,7 +15,8 @@
       background-size: cover;
       background-repeat: no-repeat;
       background-position: center;
-      font-family: 'Jost', sans-serif;
+      font-family: 'Akaya Kanadaka', cursive, sans-serif;
+
       color: #333;
       margin: 0;
       padding: 0;
@@ -66,17 +69,15 @@
   text-align: center;
   background-color: #ff9661;
   color: white;
-  font-family: 'Jost', sans-serif;
+  font-family: 'Akaya Kanadaka', cursive, sans-serif;
+
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  margin-top: 20px;
+  margin-top: 20px; 
 }
 
   </style>
 </head>
 <body>
-
-  <!-- 🔊 Background Music -->
-  <audio id="bgMusic" src="audio/candy-crush.mp3" autoplay loop muted></audio>
 
   <div class="container">
     <div class="button-row">
@@ -90,23 +91,10 @@
   </div>
 
   <script>
-    // Show/hide time input
     function toggleTimeInput() {
       const container = document.getElementById('timeInputContainer');
       container.style.display = container.style.display === 'none' ? 'block' : 'none';
     }
-
-    // 🎵 Try unmuting after short delay to allow autoplay
-    window.addEventListener('load', () => {
-      const music = document.getElementById('bgMusic');
-      setTimeout(() => {
-        music.muted = false;
-        music.volume = 0.1;
-        music.play().catch((err) => {
-          console.warn('Autoplay failed:', err);
-        });
-      }, 1000);
-    });
   </script>
 
 </body>
