@@ -11,6 +11,7 @@
 
   <style>
     body {
+      
       background-image: url('images/image2.svg');
       background-size: cover;
       background-repeat: no-repeat;
@@ -79,6 +80,11 @@
 </head>
 <body>
 
+ <audio id="bgAudio" autoplay muted loop>
+  <source src="audio/candy-crush.mp3" type="audio/mpeg" />
+</audio>
+
+
   <div class="container">
     <div class="button-row">
       <button class="button" onclick="toggleTimeInput()">Enter journey time</button>
@@ -95,6 +101,17 @@
       const container = document.getElementById('timeInputContainer');
       container.style.display = container.style.display === 'none' ? 'block' : 'none';
     }
+
+      const bgAudio = document.getElementById('bgAudio');
+
+  function startAudio() {
+    bgAudio.play();
+  }
+
+  function toggleTimeInput() {
+    const container = document.getElementById('timeInputContainer');
+    container.style.display = container.style.display === 'none' ? 'block' : 'none';
+  }
   </script>
 
 </body>
