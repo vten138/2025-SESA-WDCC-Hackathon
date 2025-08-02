@@ -75,44 +75,80 @@
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
   margin-top: 20px; 
 }
+#muteBtn {
+  position: absolute;
+  top: 60px;
+  right: 60px;
+  background-color: rgba(255, 150, 97, 0.9);
+  border: none;
+  border-radius: 50%;
+  font-size: 40px;
+  padding: 25px;
+  cursor: pointer;
+  color: white;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+  z-index: 1000;
+  transition: background-color 0.3s ease;
+}
+
+#muteBtn:hover {
+  background-color: #b35628;
+}
 
   </style>
 </head>
+
+
+
+
 <body>
 
- <audio id="bgAudio" autoplay muted loop>
+ <audio id="bgAudio" loop>
   <source src="audio/candy-crush.mp3" type="audio/mpeg" />
 </audio>
 
+<button id="muteBtn" onclick="toggleMute()">🔊</button>
 
-  <div class="container">
-    <div class="button-row">
-      <button class="button" onclick="toggleTimeInput()">Enter journey time</button>
-      <a href="map.html" class="button">Play!</a>
-    </div>
 
-    <div id="timeInputContainer">
-      <input type="time" id="tripTime" />
-    </div>
+<div class="container">
+  <div class="button-row">
+    <button class="button" onclick="toggleTimeInput(); startAudio();">Enter journey time</button>
+    <a href="map.html" class="button" onclick="startAudio()">Play!</a>
   </div>
 
-  <script>
-    function toggleTimeInput() {
-      const container = document.getElementById('timeInputContainer');
-      container.style.display = container.style.display === 'none' ? 'block' : 'none';
-    }
+  <div id="timeInputContainer">
+    <input type="time" id="tripTime" />
+  </div>
+</div>
 
-      const bgAudio = document.getElementById('bgAudio');
+
+  <script>
+  const bgAudio = document.getElementById('bgAudio');
+
+  function toggleMute() {
+  bgAudio.muted = !bgAudio.muted;
+  const btn = document.getElementById('muteBtn');
+  btn.textContent = bgAudio.muted ? '🔇' : '🔊';
+}
+
 
   function startAudio() {
-    bgAudio.play();
+    if (bgAudio.paused) {
+      bgAudio.volume = 0.5;
+      bgAudio.play().catch((e) => {
+        console.log("Audio playback failed:", e);
+      });
+    }
   }
 
-  function toggleTimeInput() {
-    const container = document.getElementById('timeInputContainer');
-    container.style.display = container.style.display === 'none' ? 'block' : 'none';
-  }
-  </script>
+  // Listen for any user click to start the audio
+  window.addEventListener('click', () => {
+    startAudio();
+  }, { once: true }); // run only once
+</script>
+
+
+
 
 </body>
 </html>
