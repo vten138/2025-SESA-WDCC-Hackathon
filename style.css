@@ -14,7 +14,7 @@ body {
 
 h1 {
   font-family: 'Lexend', sans-serif;
-  font-size: 2.2rem;
+  font-size: 4rem;
 }
 
 .button {
@@ -24,6 +24,7 @@ h1 {
   padding: 12px 24px;
   font-size: 1rem;
   border-radius: 8px;
+  text-decoration: none;
   cursor: pointer;
   font-family: 'Lexend', sans-serif;
   transition: background-color 0.3s ease;
