@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bingo Popup</title>
+    <!-- Link to external CSS for styling -->
+    <link rel="stylesheet" href="bingo.css">
+</head>
+<!-- ...existing code... -->
+<body>
+    <!-- Main heading for the Bingo game -->
+    <h1>Roadtrip Bingo 🚗</h1>
+    <!-- Bingo board table (3 rows x 4 columns = 12 boxes) -->
+    <table id="bingoBoard">
+        <tr>
+            <td class="c1-square"></td><td class="c2-square"></td><td class="c3-square"></td><td class="c4-square"></td>
+        </tr>
+        <tr>
+            <td class="c4-square"></td><td class="c1-square"></td><td class="c2-square"></td><td class="c3-square"></td>
+        </tr>
+        
+        <tr>
+            <td class="c2-square"></td><td class="c3-square"></td><td class="c4-square"></td><td class="c1-square"></td>
+        </tr>
+    </table>
+    <!-- Message area for game notifications -->
+    <div id="message"></div>
+    <script>
+        // Get all table cells except headers
+        const board = document.getElementById('bingoBoard');
+        const cells = [];
+        for (let i = 1; i < board.rows.length; i++) {
+            for (let j = 0; j < board.rows[i].cells.length; j++) {
+                cells.push(board.rows[i].cells[j]);
+            }
+        }
+
+        // Add click event to each cell
+        cells.forEach(cell => {
+            cell.addEventListener('click', function() {
+                cell.classList.toggle('marked');
+                checkWin();
+            });
+        });
+
+        // Check for Bingo (row, column)
+        function checkWin() {
+            const boardArr = [];
+            for (let i = 1; i < board.rows.length; i++) {
+                boardArr.push(Array.from(board.rows[i].cells).map(cell =>
+                    cell.classList.contains('marked')
+                ));
+            }
+
+            let bingo = false;
+            // Check rows
+            for (let i = 0; i < 3; i++) {
+                if (boardArr[i].every(marked => marked)) bingo = true;
+            }
+            // Check columns
+            for (let j = 0; j < 4; j++) {
+                if (boardArr.map(row => row[j]).every(marked => marked)) bingo = true;
+            }
+
+            document.getElementById('message').textContent = bingo ? "Bingo! 🎉" : "";
+        }
+    </script>
+<!-- ...existing code... -->
+</body>
+</html>

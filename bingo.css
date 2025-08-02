@@ -1,0 +1,92 @@
+/* Set the font and center the content */
+body {
+    background-color: #dcf6ff;
+    font-size: 30px;
+    font-weight: 400;
+    font-style: normal;
+    color: #75cdff;
+    text-align: center;
+    letter-spacing: 0;
+    line-height: 62px;
+    font-family: "Bauhaus 93", "Arial Rounded MT Bold", Arial, sans-serif;
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+    height: 100vh; /* Full viewport height */
+    display: flex; /* Enable Flexbox */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    flex-direction: column; /* Stack content vertically */}
+
+/* Center the bingo board and remove spacing between cells */
+table {
+    margin: 0 auto;
+    border-collapse: separate;   /* Change from collapse to separate */
+    border-spacing: 16px;        /* Space between squares */
+}
+
+/* Style for each bingo cell */
+td {
+    background: #fd9292;
+    width: 150px;              /* Cell width */
+    height: 90px;             /* Cell height */
+    font-size: 24px;          /* Text size */
+    text-align: center;       /* Center text */
+    cursor: pointer;          /* Pointer cursor on hover */
+    /*border: 3px solid #75cdff;      /* Thicker border */
+    border-radius: 20px;         /* Rounded corners */
+    padding: 10px;
+}
+
+.c2-square {
+    background: #f59494;
+    /* other td styles */
+    width: 150px;
+    height: 90px;
+    font-size: 24px;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 20px;
+    padding: 10px;
+}
+
+.c4-square {
+    background: #ed9dfd;
+    width: 150px;
+    height: 90px;
+    font-size: 24px;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 20px;
+    padding: 10px;
+}
+
+.c3-square {
+    background: #9ff7a9;
+    width: 150px;
+    height: 90px;
+    font-size: 24px;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 20px;
+    padding: 10px;
+}
+
+.c1-square {
+    background: #ecfb99;
+    width: 150px;
+    height: 90px;
+    font-size: 24px;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 20px;
+    padding: 10px;
+}
+
+
+    /* ...existing code... */
+.marked {
+    background: #807777; /* Light green for marked cells */
+    color: #333;
+    text-decoration: line-through;
+}
+/* ...existing code... */
