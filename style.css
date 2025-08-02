@@ -17,11 +17,11 @@ h1 {
 }
 
 .button {
-  background-color: #ff69b4; /* Hot pink */
+  background-color: #a5d687; /* Hot pink */
   color: white;
   border: none;
   padding: 12px 24px;
-  font-size: 1rem;
+  font-size: 1.3rem;
   border-radius: 8px;
   text-decoration: none;
   cursor: pointer;
@@ -30,6 +30,6 @@ h1 {
 }
 
 .button:hover {
-  background-color: #ff85c1; /* Lighter pink on hover */
+  background-color: #a5d687; /* Lighter pink on hover */
 }
 
