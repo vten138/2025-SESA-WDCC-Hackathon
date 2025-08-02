@@ -58,22 +58,24 @@
     }
 
     input[type="time"] {
-  padding: 20px 30px;
-  font-size: 24px;
-  border-radius: 50px;
-  border: none;
-  outline: none;
-  text-align: center;
-  background-color: #ff9661;
-  color: white;
-  font-family: 'Jost', sans-serif;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  margin-top: 20px;
-}
-
+      padding: 20px 30px;
+      font-size: 24px;
+      border-radius: 50px;
+      border: none;
+      outline: none;
+      text-align: center;
+      background-color: #ff9661;
+      color: white;
+      font-family: 'Jost', sans-serif;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      margin-top: 20px;
+    }
   </style>
 </head>
 <body>
+
+  <!-- 🔊 Background Music -->
+  <audio id="bgMusic" src="audio/candy-crush.mp3" autoplay loop muted></audio>
 
   <div class="container">
     <div class="button-row">
@@ -87,10 +89,23 @@
   </div>
 
   <script>
+    // Show/hide time input
     function toggleTimeInput() {
       const container = document.getElementById('timeInputContainer');
       container.style.display = container.style.display === 'none' ? 'block' : 'none';
     }
+
+    // 🎵 Try unmuting after short delay to allow autoplay
+    window.addEventListener('load', () => {
+      const music = document.getElementById('bgMusic');
+      setTimeout(() => {
+        music.muted = false;
+        music.volume = 0.1;
+        music.play().catch((err) => {
+          console.warn('Autoplay failed:', err);
+        });
+      }, 1000);
+    });
   </script>
 
 </body>
