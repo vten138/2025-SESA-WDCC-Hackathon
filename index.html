@@ -75,14 +75,40 @@
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
   margin-top: 20px; 
 }
+#muteBtn {
+  position: absolute;
+  top: 60px;
+  right: 60px;
+  background-color: rgba(255, 150, 97, 0.9);
+  border: none;
+  border-radius: 50%;
+  font-size: 40px;
+  padding: 25px;
+  cursor: pointer;
+  color: white;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+  z-index: 1000;
+  transition: background-color 0.3s ease;
+}
+
+#muteBtn:hover {
+  background-color: #b35628;
+}
 
   </style>
 </head>
+
+
+
+
 <body>
 
  <audio id="bgAudio" loop>
   <source src="audio/candy-crush.mp3" type="audio/mpeg" />
 </audio>
+
+<button id="muteBtn" onclick="toggleMute()">🔊</button>
+
 
 <div class="container">
   <div class="button-row">
@@ -99,20 +125,28 @@
   <script>
   const bgAudio = document.getElementById('bgAudio');
 
+  function toggleMute() {
+  bgAudio.muted = !bgAudio.muted;
+  const btn = document.getElementById('muteBtn');
+  btn.textContent = bgAudio.muted ? '🔇' : '🔊';
+}
+
+
   function startAudio() {
     if (bgAudio.paused) {
-      bgAudio.volume = 0.5; // optional
+      bgAudio.volume = 0.5;
       bgAudio.play().catch((e) => {
         console.log("Audio playback failed:", e);
       });
     }
   }
 
-  function toggleTimeInput() {
-    const container = document.getElementById('timeInputContainer');
-    container.style.display = container.style.display === 'none' ? 'block' : 'none';
-  }
+  // Listen for any user click to start the audio
+  window.addEventListener('click', () => {
+    startAudio();
+  }, { once: true }); // run only once
 </script>
+
 
 
 
