@@ -78,3 +78,20 @@ h2 {
   background-color: #79a5d6;
   border-radius: 30px;
 }
+
+.highlight {
+  border-color: #ffda3a;
+  border-radius: 10px
+}
+
+.dragImage {
+  position: absolute;
+  cursor: grab;
+  user-select: none;
+  transition: left 0.2s ease, top 0.2s ease;
+}
+  
+.dropZoneImage {
+  position: absolute;
+  transition: box-shadow 0.2s ease;
+}
