@@ -12,6 +12,9 @@ document.addEventListener('click', flap);
 let score = 0;
 const scoreDisplay = document.getElementById('score');
 
+const scoreAudio = new Audio('audio/coin-collecting.mp3');
+scoreAudio.volume = 0.8;
+
 function flap(e) {
   if (e.code === 'Space' || e.type === 'click') {
     birdTop -= 40;
@@ -53,33 +56,48 @@ function createPipe() {
       pipeBottom.remove();
     }
 
-    pipeX -= 2;
-    pipeTop.style.left = pipeX + 'px';
-    pipeBottom.style.left = pipeX + 'px';
-
     const birdX = 150;       // Matches left: 150px
     const birdWidth = 60;
     const birdHeight = 60;
-
     const pipeWidth = 100;
 
-    const pipeRightEdge = pipeX + pipeWidth;
-    const birdRightEdge = birdX + birdWidth;
+    if (!isPaused) {
+      pipeX -= 2;
+      pipeTop.style.left = pipeX + 'px';
+      pipeBottom.style.left = pipeX + 'px';
+
+  // Collision detection
+  const pipeRightEdge = pipeX + pipeWidth;
+  const birdRightEdge = birdX + birdWidth;
+  const birdBottom = birdTop + birdHeight;
 
   if (pipeRightEdge > birdX && pipeX < birdRightEdge) {
+    if (birdTop < pipeHeight || birdBottom > pipeHeight + gap) {
+      gameOver();
+    }
+  }
+}
+    const pipeRightEdge = pipeX + pipeWidth;
+    const birdRightEdge = birdX + birdWidth;
     const birdBottom = birdTop + birdHeight;
+
+  if (pipeRightEdge > birdX && pipeX < birdRightEdge) {
     if (birdTop < pipeHeight || birdBottom > pipeHeight + gap) {
       gameOver();
     }
   }
 
-  // ✅ Score update: only if bird has passed the pipe
-    if (!hasScored && pipeX + pipeWidth < birdX) {
+  if (!hasScored && pipeX + pipeWidth < birdX) {
       score++;
       hasScored = true;
       scoreDisplay.textContent = score;
+
+      scoreAudio.currentTime = 0;
+      scoreAudio.play().catch((err) =>
+        console.warn("Audio play failed:", err)
+      );
     }
-}, 20);
+  }, 20);
 }
 
 function gameOver() {
@@ -113,5 +131,12 @@ createPipe();
 const menuButton = document.getElementById('menu-button');
 
 menuButton.addEventListener('click', () => {
-  window.location.href = 'index.html'; // or your actual main menu file
+  isPaused = !isPaused;
+
+  // Optional: change button text while paused
+  if (isPaused) {
+    menuButton.textContent = 'Resume';
+  } else {
+    menuButton.textContent = 'Pause';
+  }
 });
