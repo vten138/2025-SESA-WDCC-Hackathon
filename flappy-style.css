@@ -33,7 +33,6 @@
 
 .pipe.top {
   top: 0;
-  /* background-image: url('images/flappy/pipe-up.png'); */
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -43,7 +42,6 @@
 
 .pipe.bottom {
   bottom: 0;
-  /* background-image: url('images/flappy/pipe-down.png'); */
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -173,30 +171,3 @@
   background-color: #388e3c;
 }
 
-/* #win-screen {
-  position: fixed;
-  width: 100vw;
-  height: 100vh;
-  border-radius: 5px;
-  overflow: hidden;
-  background-image: url('images/win-screen2.mp4');
-  background-size: cover;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-#win-screen button {
-  margin: 20px;
-  padding: 12px 24px;
-  font-size: 20px;
-  background-color: #4caf50;
-  color: white;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-}
-
-#win-screen button:hover {
-  background-color: #388e3c;
-} */

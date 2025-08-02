@@ -1,5 +1,8 @@
 const bird = document.getElementById('bird');
 const gameContainer = document.getElementById('game-container');
+const flappyGameAudio = new Audio('audio/flappy-game.mp3');
+flappyGameAudio.volume = 0.8;
+flappyGameAudio. play();
 
 let birdTop = 60;
 let gravity = 2;
