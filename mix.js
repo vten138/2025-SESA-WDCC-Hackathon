@@ -2,8 +2,11 @@ const ingredients = document.getElementsByClassName('ingredients');
 const dropZone = document.getElementById('bowl-drop-zone');
 const bowl = document.getElementById('bowl');
 const whisk = document.getElementById('whisk');
+const nextButton = document.getElementById('next-step-button');
 
 let bowlStage = 0;
+let whiskUsedAtStage = -1; // Track the bowl stage at which whisk was last used
+
 const bowlImages = [
   'images/Cake-images-png/bowl1.png',
   'images/Cake-images-png/bowl2.png',
@@ -13,25 +16,24 @@ const bowlImages = [
 let originalWhiskX = 0;
 let originalWhiskY = 0;
 
-// Store original position after page layout
 window.addEventListener('load', () => {
   originalWhiskX = whisk.offsetLeft;
   originalWhiskY = whisk.offsetTop;
 });
 
-// Allow dragging for all ingredients
+// Enable drag for ingredients
 for (let item of ingredients) {
   item.addEventListener('dragstart', (e) => {
     e.dataTransfer.setData('text/plain', item.id);
   });
 }
 
-// Allow dragging for whisk
+// Enable drag for whisk
 whisk.addEventListener('dragstart', (e) => {
   e.dataTransfer.setData('text/plain', 'whisk');
 });
 
-// Allow drop on bowl area
+// Allow drop
 dropZone.addEventListener('dragover', (e) => e.preventDefault());
 
 dropZone.addEventListener('drop', (e) => {
@@ -41,7 +43,7 @@ dropZone.addEventListener('drop', (e) => {
 
   if (!draggedElem) return;
 
-  // ====== Whisk Drop ======
+  // === Whisk dropped ===
   if (draggedId === 'whisk') {
     const bowlCenterX = dropZone.offsetLeft + dropZone.offsetWidth / 2 - whisk.offsetWidth / 2;
     const bowlCenterY = dropZone.offsetTop + dropZone.offsetHeight / 2 - whisk.offsetHeight / 2;
@@ -50,25 +52,36 @@ dropZone.addEventListener('drop', (e) => {
     whisk.style.left = `${bowlCenterX}px`;
     whisk.style.top = `${bowlCenterY}px`;
 
-    // Trigger stirring animation
     whisk.classList.add('stirring');
 
-    // Reset after animation
+    // Record when whisk is used
+    whiskUsedAtStage = bowlStage;
+
     setTimeout(() => {
       whisk.classList.remove('stirring');
-      whisk.style.transform = 'none'; // reset translate/scale
+      whisk.style.transform = 'none';
       whisk.style.left = `${originalWhiskX}px`;
       whisk.style.top = `${originalWhiskY}px`;
-    }, 3000); // match animation duration
+
+      // Show button only if whisk used after last ingredient is added
+      if (bowlStage === bowlImages.length && whiskUsedAtStage === bowlImages.length) {
+        nextButton.classList.add('show');
+      }
+    }, 3000);
   }
 
-  // ====== Ingredient Drop ======
+  // === Ingredient dropped ===
   else if (draggedElem.classList.contains('ingredients')) {
     draggedElem.style.display = 'none';
 
     if (bowlStage < bowlImages.length) {
       bowl.src = bowlImages[bowlStage];
       bowlStage++;
+    }
+
+    // Show button only if whisk used after last ingredient
+    if (bowlStage === bowlImages.length && whiskUsedAtStage === bowlImages.length) {
+      nextButton.classList.add('show');
     }
   }
 });

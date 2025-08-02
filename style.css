@@ -250,3 +250,37 @@ a:active {
   left: 17vw;
   width: 17.5vw;
 }
+
+#next-step-button {
+  display: none;            /* Hidden by default */
+  padding: 12px 35px;
+  font-size: 3rem;
+  font-family: sans-serif;
+  font-weight: 900;
+  color: black;
+  background-color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  border-radius: 120px;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  opacity: 0;
+  transform: translateY(20px);
+  position: absolute;
+  top: 80vh;
+  right: 8%;
+  z-index: 10;              /* Ensure it appears above other elements */
+}
+
+/* When showing the button */
+#next-step-button.show {
+  display: inline-block !important;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Optional: hover effect */
+#next-step-button:hover {
+  background-color: #ff9661;
+}
