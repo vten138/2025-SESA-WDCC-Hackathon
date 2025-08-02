@@ -1,0 +1,60 @@
+body {
+    background: linear-gradient(135deg, #dcf6ff 0%, #ffa9e5 100%);
+    text-align: center;
+    font-family: "Bauhaus 93", "Arial Rounded MT Bold", Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+h1 {
+    font-size: 3.5em;
+    margin-top: 80px;
+    color: #ff6f91;
+    text-shadow: 2px 2px 8px #fff;
+    font-family: "Bauhaus 93", "Arial Rounded MT Bold", Arial, sans-serif;
+}
+
+p {
+    font-size: 1.8em;
+    color: #5fb7ea;
+    margin-bottom: 40px;
+font-family: "Stencil", "Arial Rounded MT Bold", Arial, sans-serif;
+}
+
+.return-btn {
+    display: inline-block;
+    padding: 16px 32px;
+    font-size: 1.2em;
+    background: #75cdff;
+    color: #fff;
+    border: none;
+    border-radius: 30px;
+    text-decoration: none;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+    transition: background 0.2s;
+    font-family: "Arial Rounded MT Bold", Arial, sans-serif;
+    font-weight: bold;
+}
+
+.return-btn:hover {
+    background: #ff6f91;
+    color: #fff;
+}
+
+.confetti-piece {
+    position: absolute;
+    top: -20px;
+    width: 12px;
+    height: 24px;
+    opacity: 0.8;
+    border-radius: 4px;
+    animation: confetti-fall 2.5s linear infinite;
+}
+
+@keyframes confetti-fall {
+    to {
+        transform: translateY(100vh) rotate(360deg);
+    }
+}

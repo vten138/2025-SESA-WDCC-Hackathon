@@ -1,0 +1,80 @@
+body {
+    background: linear-gradient(135deg, #dcf6ff 0%, #ffa9e5 100%);
+    font-size: 100%;
+    font-weight: 400;
+    font-style: normal;
+    color: #64bdf0;
+    text-align: center;
+    letter-spacing: 0;
+    line-height: 62px;
+    font-family: "Bauhaus 93", "Arial Rounded MT Bold", Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+h1 {
+  font-size: min(7vw, 7vh); /* adapt font size on rotation */
+  margin-bottom: 0;
+}
+
+.bingo-container {
+    position: relative;
+    display: inline-block;
+    width: min(80vw, 500px); /* responsive container width */
+}
+
+.bingo-svg {
+    width: 100%;
+    height: auto;
+    border-radius: 20px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+    border: 3px solid #75cdff;
+    margin-top: 7px;
+}
+
+.bingo-button {
+    position: absolute;
+    width: 31%;
+    height: 20.5%;
+    background: rgba(255, 0, 0, 0); /* transparent by default */
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s ease; /* smooth change */
+}
+
+.bingo-button:hover {
+    background: rgba(0, 0, 0, 0.2); /* darker on hover */
+}
+
+.bingo-button.active {
+    background: rgba(37, 25, 32, 0.573); /* clicked state */
+}
+
+
+.return-button {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #64bdf0;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  font-size: 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: background-color 0.3s ease;
+  z-index: 1000; /* makes sure it's on top */
+}
+
+.return-button:hover {
+  background-color: #4a9cd8;
+}
