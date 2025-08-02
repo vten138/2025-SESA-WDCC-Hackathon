@@ -28,11 +28,11 @@
 .button-container {
   display: flex;
   gap: 20px;                 /* Space between buttons */
-  margin-bottom: 40px;       /* Push up from bottom */
+  margin-bottom: 200px;       /* Push up from bottom */
 }
 
 .button {
-  padding: 10px 20px;
+  padding: 30px 60px;
   background-color: #ff66b2;
   color: white;
   text-decoration: none;
@@ -51,24 +51,6 @@
   </style>
 </head>
 <body>
-
-  <!-- Button to show time input -->
-  <button class="button" onclick="toggleTimeInput()">Enter Time</button>
-
-  <!-- Time input field (initially hidden) -->
-  <div id="timeInputContainer" style="display: none;">
-    <input type="time" id="tripTime">
-  </div>
-
-  <!-- Go to Main button -->
-  <a href="map.html" class="button">Go to Main</a>
-
-  <script>
-    function toggleTimeInput() {
-      const container = document.getElementById('timeInputContainer');
-      container.style.display = container.style.display === 'none' ? 'block' : 'none';
-    }
-  </script>
 
 </body>
 
