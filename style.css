@@ -142,33 +142,53 @@ a:active {
 }
 
 #milk {
-  position: relative;
+  position: absolute;
   left: 2vw;
   width: 130px;
 }
 
 #sugar {
-  position: relative;
-  left: 11vw;
-  top: -8vh;
+  position: absolute;
+  left: 40vw;
+  top: -5vh;
   width: 120px;
 }
 #bowl {
-  position: relative;
-  left: 4vw;
-  top: -3vh;
+  position: absolute;
+  left: 20vw;
+  top: 5vh;
   width: 230px;
+  height: auto;
+  gap: 10px;
 }
 #flour {
-  position: relative;
-  left: 4vw;
+  position: absolute;
+  left: 45vw;
+  top: 0vh;
 }
+
 #whisk {
-  position: relative;
-  left: 3vw;
-  top: 3vh;
+  position: absolute;
+  left: 35vw;
+  top: 10vh;
   width: 160px;
+  cursor: grab;
+  transition: top 0.5s ease, left 0.5s ease;
 }
+
+.stirring {
+  animation: stir 2.5s ease-in-out;
+  transform-origin: center center;
+}
+
+@keyframes stir {
+  0%   { transform: translateX(0) scaleX(1); }
+  25%  { transform: translateX(-40px) scaleX(-1); }
+  50%  { transform: translateX(40px) scaleX(1); }
+  75%  { transform: translateX(-40px) scaleX(-1); }
+  100% { transform: translateX(0) scaleX(1); }
+}
+
 .ingredients-container {
   width: 60vw;
   position: absolute;
