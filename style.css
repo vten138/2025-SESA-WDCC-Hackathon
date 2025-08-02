@@ -1,24 +1,23 @@
 body {
   margin: 0;
   padding: 0;
-  height: 100vh;                          /* Full viewport height */
-  display: flex;                         /* Enable Flexbox */
-  justify-content: center;              /* Center horizontally */
-  align-items: center;                  /* Center vertically */
-  flex-direction: column;               /* Stack content vertically */
+  height: 100vh;                          
+  display: flex;                         
+  justify-content: center;              
+  align-items: center;                  
+  flex-direction: column;               
   background-color: #FCFAF9;
   color: black;
-  font-family: 'Assistant', sans-serif;
-  text-align: center;
+  font-family: 'Assistant', 'Akaya Kanadaka', sans-serif;
 }
 
 h1 {
-  font-family: 'Lexend', sans-serif;
+  font-family: 'Lexend', 'Akaya Kanadaka', sans-serif;
   font-size: 4rem;
 }
 
 .button {
-  background-color: #a5d687; /* Hot pink */
+  background-color: #a5d687; 
   color: white;
   border: none;
   padding: 12px 24px;
@@ -26,11 +25,10 @@ h1 {
   border-radius: 8px;
   text-decoration: none;
   cursor: pointer;
-  font-family: 'Lexend', sans-serif;
+  font-family: 'Lexend', 'Akaya Kanadaka', sans-serif;
   transition: background-color 0.3s ease;
 }
 
 .button:hover {
-  background-color: #a5d687; /* Lighter pink on hover */
+  background-color: #90bc5a;  /* I tweaked hover color so you see a difference */
 }
-
