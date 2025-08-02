@@ -97,6 +97,10 @@ a:active {
   border-radius: 30px;
 }
 
+.cake-div-sml.title-2 {
+  width: 30%;
+}
+
 .cake-sml-img {
   width: 12vw;
   padding: 25px;
@@ -132,7 +136,7 @@ a:active {
 }
 
 .ingredients {
-  width: 140px;
+  width: 170px;
   height: auto;
   gap: 10px;
 }
@@ -163,6 +167,7 @@ a:active {
   position: relative;
   left: 3vw;
   top: 3vh;
+  width: 160px;
 }
 .ingredients-container {
   width: 60vw;
@@ -178,14 +183,7 @@ a:active {
   -10px -10px 10px #ffda3a;
 }
 
-.dragImage {
-  position: absolute;
+.drag-image {
+  width: 100px;
   cursor: grab;
-  user-select: none;
-  transition: left 0.2s ease, top 0.2s ease;
-}
-  
-.dropZoneImage {
-  position: absolute;
-  transition: box-shadow 0.2s ease;
 }
