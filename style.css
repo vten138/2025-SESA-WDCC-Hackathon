@@ -16,6 +16,12 @@ h1 {
   font-size: 4rem;
 }
 
+h2 {
+  font-size: 3rem;
+  font-weight: 900;
+  font-family: sans-serif;
+}
+
 .button {
   background-color: #a5d687; /* Hot pink */
   color: white;
@@ -33,3 +39,42 @@ h1 {
   background-color: #a5d687; /* Lighter pink on hover */
 }
 
+#cake-bg {
+  background-color: #e3f2ff;
+}
+
+#cake-title {
+  position: absolute;
+  left:20px;
+  top: 20px;
+}
+
+#cake-categories {
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+}
+.cake-div-lrg {
+  width: 40%;
+  height: 40vw;
+  margin: 10px;
+  background-color: #79a5d6;
+  border: 3px solid #79a5d6;
+  border-radius: 30px;
+}
+
+.cake-div-lrg:hover {
+  border-color: white;
+}
+
+.cake-div-sml {
+  width: 20%;
+  height: 25vw;
+  background-color: #79a5d6;
+  margin: 10px;
+  background-color: #79a5d6;
+  border-radius: 30px;
+}
