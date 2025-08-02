@@ -8,24 +8,24 @@ body {
   flex-direction: column;               
   background-color: #FCFAF9;
   color: black;
-  font-family: 'Assistant', 'Akaya Kanadaka', sans-serif;
+  font-family: 'Fredoka', sans-serif;
 }
 
 h1 {
-  font-family: 'Lexend', 'Akaya Kanadaka', sans-serif;
-  font-size: 4rem;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 15rem;
 }
 
 .button {
   background-color: #a5d687; 
   color: white;
   border: none;
-  padding: 12px 24px;
-  font-size: 1.3rem;
+  padding: 18px 34px;
+  font-size: 5rem;
   border-radius: 8px;
   text-decoration: none;
   cursor: pointer;
-  font-family: 'Lexend', 'Akaya Kanadaka', sans-serif;
+ font-family: 'Fredoka', sans-serif;
   transition: background-color 0.3s ease;
 }
 
