@@ -207,3 +207,46 @@ a:active {
   width: 100px;
   cursor: grab;
 }
+
+
+#baking-bg {
+  position: relative;
+  background-image: url(images/Cake-images-png/baking-background.svg);
+  background-size: cover;
+  overflow: hidden;
+  height: 100vh;
+}
+
+.baking-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+}
+
+.table-left {
+  position: absolute;
+  top: 65vh;
+  left: -10vw;
+  width: 55vw;
+}
+
+.oven {
+  position: absolute;
+  top: 30vh;
+  left: 55vw;
+  width: 35vw;
+}
+
+#oven-mitt {
+  position: absolute;
+  top: 55vh;
+  left: 3vw;
+  width: 10vw;
+}
+
+#cake {
+  position: absolute;
+  top: 55vh;
+  left: 17vw;
+  width: 17.5vw;
+}
