@@ -215,6 +215,7 @@ a:active {
   top: 30vh;
   left: 55vw;
   width: 35vw;
+  object-fit: contain;
 }
 
 #oven-mitt {
