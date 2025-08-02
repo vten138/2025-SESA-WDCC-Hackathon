@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Congratulations!</title>
+    <link rel="stylesheet" href="congrats.css">
+</head>
+<body>
+    <h1>🎉 Congratulations! 🎉</h1>
+    <p>Bingo victory unlocked: Roadtrip Legend status achieved 🏅!</p>
+    <a href="tempfortest.html" class="return-btn">Return to Map</a>
+    <script>
+        // Confetti animation
+        for(let i=0; i<60; i++){
+            const conf = document.createElement('div');
+            conf.className = 'confetti-piece';
+            conf.style.left = Math.random()*100 + 'vw';
+            conf.style.animationDelay = (Math.random()*2) + 's';
+            conf.style.background = `hsl(${Math.random()*360},80%,60%)`;
+            document.body.appendChild(conf);
+        }
+    </script>
+
+    <script>
+  // Clear the stored bingo state on congrats page load
+  localStorage.removeItem('bingoActiveButtons');
+</script>
+</body>
+</html>
