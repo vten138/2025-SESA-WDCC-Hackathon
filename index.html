@@ -11,6 +11,7 @@
 
   <style>
     body {
+      
       background-image: url('images/image2.svg');
       background-size: cover;
       background-repeat: no-repeat;
@@ -79,23 +80,41 @@
 </head>
 <body>
 
-  <div class="container">
-    <div class="button-row">
-      <button class="button" onclick="toggleTimeInput()">Enter journey time</button>
-      <a href="map.html" class="button">Play!</a>
-    </div>
+ <audio id="bgAudio" loop>
+  <source src="audio/candy-crush.mp3" type="audio/mpeg" />
+</audio>
 
-    <div id="timeInputContainer">
-      <input type="time" id="tripTime" />
-    </div>
+<div class="container">
+  <div class="button-row">
+    <button class="button" onclick="toggleTimeInput(); startAudio();">Enter journey time</button>
+    <a href="map.html" class="button" onclick="startAudio()">Play!</a>
   </div>
 
+  <div id="timeInputContainer">
+    <input type="time" id="tripTime" />
+  </div>
+</div>
+
+
   <script>
-    function toggleTimeInput() {
-      const container = document.getElementById('timeInputContainer');
-      container.style.display = container.style.display === 'none' ? 'block' : 'none';
+  const bgAudio = document.getElementById('bgAudio');
+
+  function startAudio() {
+    if (bgAudio.paused) {
+      bgAudio.volume = 0.5; // optional
+      bgAudio.play().catch((e) => {
+        console.log("Audio playback failed:", e);
+      });
     }
-  </script>
+  }
+
+  function toggleTimeInput() {
+    const container = document.getElementById('timeInputContainer');
+    container.style.display = container.style.display === 'none' ? 'block' : 'none';
+  }
+</script>
+
+
 
 </body>
 </html>
