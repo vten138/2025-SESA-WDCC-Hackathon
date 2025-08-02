@@ -1,9 +1,10 @@
 const bird = document.getElementById('bird');
 const gameContainer = document.getElementById('game-container');
 
-let birdTop = 200;
+let birdTop = 60;
 let gravity = 2;
 let isGameOver = false;
+let isPaused = false;
 
 document.addEventListener('keydown', flap);
 document.addEventListener('click', flap);
@@ -20,7 +21,7 @@ function flap(e) {
 function createPipe() {
   const pipeTop = document.createElement('div');
   const pipeBottom = document.createElement('div');
-  const gap = 150;
+  const gap = 200;
   const pipeHeight = Math.floor(Math.random() * 200) + 50;
 
   pipeTop.classList.add('pipe', 'top');
@@ -29,50 +30,56 @@ function createPipe() {
   let pipeX = window.innerWidth;
   let hasScored = false;
 
-  pipeTop.style.height = pipeHeight + 'px';
-  pipeTop.style.left = pipeX + 'px';
+    pipeTop.style.height = pipeHeight + 'px';
+    pipeTop.style.left = pipeX + 'px';
 
-  pipeBottom.style.height = pipeHeight + 'px';
-  pipeBottom.style.left = pipeX + 'px';
+    const bottomPipeHeight = window.innerHeight - pipeHeight - gap;
+    pipeBottom.style.height = bottomPipeHeight + 'px';
+    pipeBottom.style.left = pipeX + 'px';
+
+    // 🎨 Generate a random color
+  const color = getRandomColor();
+  pipeTop.style.backgroundColor = color;
+  pipeBottom.style.backgroundColor = color;
 
   gameContainer.appendChild(pipeTop);
   gameContainer.appendChild(pipeBottom);
 
+  
   const movePipe = setInterval(() => {
     if (isGameOver) {
       clearInterval(movePipe);
       pipeTop.remove();
       pipeBottom.remove();
-      return;
     }
 
     pipeX -= 2;
     pipeTop.style.left = pipeX + 'px';
     pipeBottom.style.left = pipeX + 'px';
 
-    const birdX = 150;
+    const birdX = 150;       // Matches left: 150px
     const birdWidth = 60;
     const birdHeight = 60;
+
     const pipeWidth = 100;
 
     const pipeRightEdge = pipeX + pipeWidth;
     const birdRightEdge = birdX + birdWidth;
+
+  if (pipeRightEdge > birdX && pipeX < birdRightEdge) {
     const birdBottom = birdTop + birdHeight;
-
-    if (pipeRightEdge > birdX && pipeX < birdRightEdge) {
-      if (birdTop < pipeHeight || birdBottom > pipeHeight + gap) {
-        gameOver();
-      }
+    if (birdTop < pipeHeight || birdBottom > pipeHeight + gap) {
+      gameOver();
     }
+  }
 
-    // ✅ Score logic
+  // ✅ Score update: only if bird has passed the pipe
     if (!hasScored && pipeX + pipeWidth < birdX) {
       score++;
       hasScored = true;
       scoreDisplay.textContent = score;
     }
-
-  }, 20);
+}, 20);
 }
 
 function gameOver() {
@@ -81,8 +88,13 @@ function gameOver() {
   window.location.reload();
 }
 
+function getRandomColor() {
+  const colors = ['#4CAF50', '#FF5722', '#3F51B5', '#FFC107', '#009688', '#E91E63'];
+  return colors[Math.floor(Math.random() * colors.length)];
+}
+
 setInterval(() => {
-  if (!isGameOver) {
+  if (!isGameOver && !isPaused) {
     birdTop += gravity;
     bird.style.top = birdTop + 'px';
 
@@ -94,4 +106,12 @@ setInterval(() => {
 
 setInterval(() => {
   if (!isGameOver) createPipe();
-}, 2000);
+}, 3000);
+
+createPipe();
+
+const menuButton = document.getElementById('menu-button');
+
+menuButton.addEventListener('click', () => {
+  window.location.href = 'index.html'; // or your actual main menu file
+});
