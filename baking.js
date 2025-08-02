@@ -1,8 +1,10 @@
 let oven = document.getElementById("oven-closed");
-const cake = document.getElementById("cake");
+const cake = document.getElementById("unbaked-cake");
+const bakingPopup = document.getElementById("baking-popup");
 
 let ovenIsOpen = false;
 let cakeInOven = false;
+let cakeIsBaked = false;
 
 // Enable cake dragging
 cake.addEventListener("dragstart", (e) => {
@@ -14,12 +16,12 @@ function setupDropZone(element) {
   element.ondrop = (e) => {
     e.preventDefault();
     const data = e.dataTransfer.getData("text/plain");
-    if (data === "cake") {
-      element.src = "images/Cake-images-png/oven-cake-open.png";
-      element.classList.add("oven");
+    if (data === "cake" && ovenIsOpen && !cakeInOven) {
+      element.src = "images/Cake-images-png/oven-open-unbaked-cake.png";
       cake.style.display = "none";
       cakeInOven = true;
-      console.log("Cake dropped into oven!");
+      cakeIsBaked = false;
+      console.log("Cake dropped into oven (unbaked)!");
     }
   };
 }
@@ -29,64 +31,93 @@ oven.addEventListener("click", () => {
   oven.dataset.animating = "true";
 
   if (!ovenIsOpen) {
-    //Open oven
+    // Opening oven
     oven.src = "images/Cake-images-png/oven-opening.png";
-    oven.classList.add("oven")
 
     setTimeout(() => {
-      oven.src = cakeInOven
-        ? "images/Cake-images-png/oven-cake-open.png"
-        : "images/Cake-images-png/oven-open.png";
+      if (cakeInOven) {
+        oven.src = cakeIsBaked
+          ? "images/Cake-images-png/oven-cake-open.png"
+          : "images/Cake-images-png/oven-open-unbaked-cake.png";
+      } else {
+        oven.src = "images/Cake-images-png/oven-open.png";
+      }
 
-      oven.id = "oven-open";
       ovenIsOpen = true;
       oven.dataset.animating = "false";
       console.log("Oven is now open");
 
-      // Re-select oven by updated ID
-      oven = document.getElementById("oven-open");
-
-      oven.addEventListener("dragover", (e) => e.preventDefault());
-
-      oven.addEventListener("drop", (e) => {
-        e.preventDefault();
-        const data = e.dataTransfer.getData("text/plain");
-        if (data === "cake") {
-          oven.src = "images/Cake-images-png/oven-cake-open.png";
-          oven.classList.add("oven")
-          cake.style.display = "none";
-          cakeInOven = true;
-          console.log("Cake dropped into oven!");
-        }
-        // Re-select and set up oven after opening
-        oven = document.getElementById("oven-open");
-        setupDropZone(oven);
-
-      });
+      setupDropZone(oven);
     }, 2000);
 
   } else {
-    // Close oven
-    oven.src = "images/Cake-images-png/oven-opening.png";
-    oven.classList.add("oven")
+    // Closing oven
+    if (oven.src.includes("oven-open-unbaked-cake")) {
+      oven.src = "images/Cake-images-png/oven-cake-closing.png";
+
+      setTimeout(() => {
+        oven.src = "images/Cake-images-png/oven-cake-closed.png";
+        ovenIsOpen = false;
+        oven.dataset.animating = "false";
+        console.log("Oven is now closed with cake inside");
+      }, 2000);
+
+    } else if (oven.src.includes("oven-cake-open")) {
+      // Closing baked cake manually
+      oven.src = "images/Cake-images-png/oven-cake-closing.png";
+
+      setTimeout(() => {
+        oven.src = "images/Cake-images-png/oven-cake-closed.png";
+        ovenIsOpen = false;
+        oven.dataset.animating = "false";
+        console.log("Oven is now closed with baked cake inside");
+      }, 2000);
+
+    } else {
+      oven.src = "images/Cake-images-png/oven-opening.png";
+
+      setTimeout(() => {
+        oven.src = "images/Cake-images-png/oven-closed.png";
+        ovenIsOpen = false;
+        oven.dataset.animating = "false";
+        console.log("Oven is now closed");
+      }, 2000);
+    }
+  }
+});
+
+bakingPopup.addEventListener("click", () => {
+  if (oven.src.includes("oven-cake-closed.png")) {
+    bakingPopup.style.display = "none";
+    oven.dataset.animating = "true";
+
+    oven.src = "images/Cake-images-png/oven-opening-cooked.png";
 
     setTimeout(() => {
-      oven.src = cakeInOven
-        ? "images/Cake-images-png/oven-cake-closed.png"
-        : "images/Cake-images-png/oven-closed.png";
-
-       //Re-select and set up oven after opening
-        oven = document.getElementById("oven-open");
-        setupDropZone(oven);
-
-      oven.id = "oven-closed";
-      oven.classList.add("oven")
-      ovenIsOpen = false;
+      oven.src = "images/Cake-images-png/oven-cake-open.png";
+      ovenIsOpen = true;
+      cakeIsBaked = true;
       oven.dataset.animating = "false";
-      console.log("Oven is now closed");
-
-      // Re-select oven again by updated ID
-      oven = document.getElementById("oven-closed");
+      console.log("Oven opened with cooked cake!");
     }, 2000);
   }
 });
+
+function showCookingPopupAfterDelay() {
+  if (oven.src.includes("oven-cake-closed.png")) {
+    setTimeout(() => {
+      bakingPopup.style.display = "block";
+
+      setTimeout(() => {
+        bakingPopup.style.display = "none";
+      }, 5000);
+    }, 2000);
+  }
+}
+
+// Monitor image changes for cooking popup trigger
+const observer = new MutationObserver(() => {
+  showCookingPopupAfterDelay();
+});
+
+observer.observe(oven, { attributes: true, attributeFilter: ['src'] });

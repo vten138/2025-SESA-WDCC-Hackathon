@@ -225,9 +225,17 @@ a:active {
   width: 10vw;
 }
 
-#cake {
+#unbaked-cake {
   position: absolute;
   top: 55vh;
   left: 17vw;
   width: 17.5vw;
+}
+
+#baking-popup {
+  display: none; 
+  position: fixed; 
+  top: 30vh; 
+  left: 25vw; 
+  width: 20vw;
 }
