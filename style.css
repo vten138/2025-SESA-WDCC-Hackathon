@@ -45,29 +45,36 @@ h2 {
 
 #cake-title {
   position: absolute;
+  font-family: monospace;
+  font-weight: 900;
   left:20px;
-  top: 20px;
+  top: 0;
 }
 
 #cake-categories {
-  width: 90%;
+  width: 80%;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   top: 0;
+  gap: 20px;
 }
 .cake-div-lrg {
-  width: 40%;
+  width: 35%;
   height: 40vw;
   margin: 10px;
   background-color: #79a5d6;
-  border: 3px solid #79a5d6;
+  border: 5px solid #79a5d6;
   border-radius: 30px;
 }
 
 .cake-div-lrg:hover {
-  border-color: white;
+  border: 10px solid white;
+}
+
+.cake-div-sml:hover {
+  border: 10px solid #79a5d6;
 }
 
 .cake-div-sml {
@@ -75,8 +82,26 @@ h2 {
   height: 25vw;
   background-color: #79a5d6;
   margin: 10px;
-  background-color: #79a5d6;
+  border: 5px solid #79a5d6;
   border-radius: 30px;
+}
+
+.cake-sml-img {
+  width: 12vw;
+  padding: 25px;
+}
+
+.cake-lrg-img {
+  width: 25vw;
+  padding: 30px;
+}
+
+.cake-txt {
+  font-size: 2rem;
+  font-family: sans-serif;
+  font-weight: 800;
+  text-align: center;
+  
 }
 
 .highlight {
