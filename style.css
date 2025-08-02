@@ -239,3 +239,11 @@ a:active {
   left: 25vw; 
   width: 20vw;
 }
+
+#baked-cake {
+  display: none;
+  position: absolute;
+  top: 55vh;
+  left: 17vw;
+  width: 17.5vw;
+}
