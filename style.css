@@ -82,7 +82,7 @@ h2 {
 .highlight {
   border-radius: 10px;
   box-shadow: 10px 10px 10px #ffda3a,
--10px -10px 10px #ffda3a;
+  -10px -10px 10px #ffda3a;
 }
 
 .dragImage {
