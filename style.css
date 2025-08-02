@@ -34,6 +34,7 @@ h1 {
   background-color: #ff85c1; /* Lighter pink on hover */
 }
 
+<<<<<<< HEAD
 #mydiv {
   position: absolute;
   font-size: 2rem;
@@ -46,3 +47,5 @@ svg {
   left: 0;
   z-index: 1;
 }
+=======
+>>>>>>> a245267b151b7acd1a84cadd06164d1ee154598a
