@@ -1,10 +1,13 @@
 body {
+  background-image: url('images/map_img2.jpg');
+  background-size: auto 100vh;
+  background-repeat: no-repeat;   
+  background-position: center; /* 20px lower than center */
   margin: 0;
   padding: 0;
-  height: 100vh;                          /* Full viewport height */
+  height: 100vh;     
   display: flex;                         /* Enable Flexbox */
   flex-direction: column;               /* Stack content vertically */
-  background-color: #FCFAF9;
   color: black;
   font-family: 'Assistant', sans-serif;
 }
@@ -40,13 +43,6 @@ h1 {
   z-index: 10;
 }
 
-svg {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 1;
-}
-
 #countdown {
   font-size: 2rem;
   color: white;
@@ -56,4 +52,9 @@ svg {
   border-radius: 10px;
   font-family: 'Jost', sans-serif;
   max-width: 148px;
+}
+
+#carImg {
+  transition: transform 90s ease;  /* only rotation will transition */
+  transform: rotate(45deg);
 }
