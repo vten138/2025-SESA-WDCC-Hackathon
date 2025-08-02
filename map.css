@@ -19,7 +19,7 @@ h1 {
   align-items: left;
 }
 
-.button1 {
+button {
   background-color: #ff69b4; /* Hot pink */
   color: white;
   border: none;
@@ -33,7 +33,7 @@ h1 {
   max-width: 150px;
 }
 
-.button1:hover {
+button:hover {
   background-color: #ff85c1; /* Lighter pink on hover */
 }
 
@@ -55,6 +55,22 @@ h1 {
 }
 
 #carImg {
-  transition: transform 90s ease;  /* only rotation will transition */
+  transition: transform 40s ease;  /* only rotation will transition */
   transform: rotate(45deg);
+}
+
+
+#bakery, #clothing, #pet {
+  width: 70vh;
+  /* width: 700px; */
+  height: auto;
+  transition: width 0.3s ease;
+  display: block;
+}
+
+#bakery:hover,
+#clothing:hover,
+#pet:hover {
+  width: 80vh;
+  /* width: 850px; */
 }
