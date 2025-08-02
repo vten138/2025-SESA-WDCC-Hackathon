@@ -1,12 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Debug Divas</title>
   <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Assistant&family=Jost&family=Lexend:wght@300&display=swap" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Assistant&family=Akaya+Kanadaka&family=Jost&family=Lexend:wght@300&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap" rel="stylesheet">
+
+
+
+
 
   <style>
     body {
@@ -14,7 +20,10 @@
       background-size: cover;
       background-repeat: no-repeat;
       background-position: center;
-      font-family: 'Akaya Kanadaka', cursive, sans-serif;
+      font-family: 'Fredoka', sans-serif;
+       font-weight: 700; 
+      
+
       color: #333;
       margin: 0;
       padding: 0;
@@ -25,8 +34,10 @@
       align-items: center;
     }
 
+    
+
     .container {
-      margin-bottom: 100px;
+      margin-bottom: 130px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -47,7 +58,7 @@
       font-weight: bold;
       cursor: pointer;
       border: none;
-      font-size: 28px;
+      font-size: 30px;
     }
 
     .button:hover {
@@ -67,9 +78,11 @@
       text-align: center;
       background-color: #ff9661;
       color: white;
-      font-family: 'Akaya Kanadaka', cursive, sans-serif;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-      margin-top: 20px; 
+      font-family: 'Fredoka', sans-serif;
+
+
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      margin-top: 20px;
     }
 
     #muteBtn {
@@ -109,12 +122,9 @@
 
   <div class="container">
     <div class="button-row">
-     <button 
-  class="button" 
-  onclick="toggleTimeInput(); startAudio();"
->
-  Enter journey time
-</button>
+      <button class="button" onclick="toggleTimeInput(); startAudio();">
+        Enter journey time
+      </button>
 
       <a href="map.html" class="button" onclick="startAudio()">Play!</a>
     </div>
@@ -138,7 +148,7 @@
         bgAudio.volume = 0.8;
         try {
           await bgAudio.play();
-        } catch(e) {
+        } catch (e) {
           console.log("Audio playback failed:", e);
         }
       }
@@ -165,4 +175,5 @@
   </script>
 
 </body>
+
 </html>
