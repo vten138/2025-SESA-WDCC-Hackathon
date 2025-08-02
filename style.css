@@ -1,13 +1,34 @@
 body {
-  margin: auto;
-  padding: 0px;
+  margin: 0;
+  padding: 0;
+  height: 100vh;                          /* Full viewport height */
+  display: flex;                         /* Enable Flexbox */
+  justify-content: center;              /* Center horizontally */
+  align-items: center;                  /* Center vertically */
+  flex-direction: column;               /* Stack content vertically */
   background-color: #FCFAF9;
   color: black;
   font-family: 'Assistant', sans-serif;
-
+  text-align: center;
 }
 
 h1 {
   font-family: 'Lexend', sans-serif;
   font-size: 2.2rem;
+}
+
+.button {
+  background-color: #ff69b4; /* Hot pink */
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: 'Lexend', sans-serif;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: #ff85c1; /* Lighter pink on hover */
 }
