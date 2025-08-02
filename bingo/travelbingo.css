@@ -8,29 +8,44 @@ body {
     letter-spacing: 0;
     line-height: 62px;
     font-family: "Bauhaus 93", "Arial Rounded MT Bold", Arial, sans-serif;
-    margin: 0; /* Remove default margin */
-    padding: 0; /* Remove default padding */
-    height: 100vh; /* Full viewport height */
-    display: flex; /* Enable Flexbox */
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
-    flex-direction: column; /* Stack content vertically */}
-    
-    img {
-    display: block;
-    margin: 24px auto;
-    width: 40%;           /* Responsive width */
-      /* Never larger than 500px */
-    height: auto;         /* Maintain aspect ratio */
-    border-radius: 20px;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
-    border: 3px solid #75cdff;
-
-    margin-top: 7px; /* Add space above the image */
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 h1 {
     margin-bottom: 0;
 }
 
+.bingo-container {
+    position: relative;
+    display: inline-block;
+    width: 40%; /* Matches image width */
+    max-width: 500px;
+}
 
+.bingo-svg {
+    width: 100%;
+    height: auto;
+    border-radius: 20px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+    border: 3px solid #75cdff;
+    margin-top: 7px;
+}
+
+.bingo-button {
+    position: absolute;
+    width: 31%;  /* 3 across */
+    height: 20.5%;    /* 4 down */
+    background: rgba(255, 0, 0, 0); /* invisible */
+    border: none;
+    cursor: pointer;
+}
+
+.bingo-button.active {
+    background: rgba(37, 25, 32, 0.573); /* highlight */
+}
