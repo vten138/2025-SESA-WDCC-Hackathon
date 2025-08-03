@@ -63,12 +63,19 @@
     }
   
     // Countdown logic
+    // let endTime = localStorage.getItem("endTime");
+    // if (!endTime) {
+    //   endTime = new Date().getTime() + (0.25 / 15) * 60 * 60 * 1000;
+    //   localStorage.setItem("endTime", endTime);
+    // } else {
+    //   endTime = parseInt(endTime);
+    // }
     let endTime = localStorage.getItem("endTime");
     if (!endTime) {
-      endTime = new Date().getTime() + (0.25 / 15) * 60 * 60 * 1000;
-      localStorage.setItem("endTime", endTime);
+      document.getElementById("countdown").textContent = "Timer not started.";
     } else {
       endTime = parseInt(endTime);
+      updateCountdown();
     }
   
     function updateCountdown() {

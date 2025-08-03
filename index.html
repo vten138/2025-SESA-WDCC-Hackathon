@@ -126,7 +126,7 @@
         Enter journey time
       </button>
 
-      <a href="map.html" class="button" onclick="startAudio()">Play!</a>
+      <a href="map.html" class="button" id="btn" onclick="startAudio()">Play!</a>
     </div>
 
     <div id="timeInputContainer">
@@ -135,6 +135,14 @@
   </div>
 
   <script>
+    document.getElementById("btn").addEventListener("click", () => {
+      const durationMs = 1 * 60 * 1000; // 1 minute
+      const now = Date.now();
+      localStorage.setItem("carStartTime", now);
+      localStorage.setItem("endTime", now + durationMs);
+      window.location.href = "map.html"; // or whatever your map page is named
+    });
+
     const bgAudio = document.getElementById('bgAudio');
 
     function toggleMute() {
