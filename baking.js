@@ -3,7 +3,8 @@ const cake = document.getElementById("unbaked-cake");
 const bakingPopup = document.getElementById("baking-popup");
 const ovenMitt = document.getElementById("oven-mitt");
 const bakedCake = document.getElementById("baked-cake");
-const nextStepBtn = document.getElementById("next-step-btn");
+// Fix the ID to match your HTML (#next-step-button, not #next-step-btn)
+const nextStepBtn = document.getElementById("next-step-button");
 
 let ovenIsOpen = false;
 let cakeInOven = false;
@@ -47,8 +48,8 @@ function setupOvenMittDropZone(element) {
       oven.src = "images/Cake-images-png/oven-open.png";  // Oven open without cake
       console.log("Cake taken out of oven!");
 
-      // Show the Next Step button
-      nextStepBtn.style.display = "inline-block";
+      // Show the Next Step button using CSS class toggle for animation
+      nextStepBtn.classList.add("show");
     }
   };
 }
@@ -163,8 +164,8 @@ function showCookingPopupAfterDelay() {
 
       setTimeout(() => {
         bakingPopup.style.display = "none";
-      }, 5000);
-    }, 2000);
+      }, 2000);
+    }, 500);
   }
 }
 
@@ -186,13 +187,13 @@ function startAutoBakeTimer() {
       bakingPopup.style.display = "block";
       setTimeout(() => {
         bakingPopup.style.display = "none";
-      }, 5000);
+      }, 2000);
     }
-  }, 5000); // Auto-bake after 5 seconds
+  }, 2000); // Auto-bake after 2 seconds
 }
 
-// Next Step button click handler
+// Next Step button click handler — now uses class toggle
 nextStepBtn.addEventListener("click", () => {
   console.log("Next step button clicked!");
-  nextStepBtn.style.display = "none";
+  nextStepBtn.classList.remove("show");
 });
