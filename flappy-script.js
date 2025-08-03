@@ -80,20 +80,6 @@ function createPipe() {
     }
   }
 }
-    const pipeRightEdge = pipeX + pipeWidth;
-    const birdRightEdge = birdX + birdWidth;
-    const birdBottom = birdTop + birdHeight;
-
-  if (pipeRightEdge > birdX && pipeX < birdRightEdge) {
-    if (birdTop < pipeHeight || birdBottom > pipeHeight + gap) {
-      gameOver();
-    }
-  }
-
-  const menuButton = document.getElementById('menu-button');
-  menuButton.addEventListener('click', () => {
-    window.location.href = 'index.html';
-  });
   
   if (!hasScored && pipeX + pipeWidth < birdX) {
       score++;
@@ -109,6 +95,10 @@ function createPipe() {
     }
   }, 20);
 }
+const menuButton = document.getElementById('menu-button');
+menuButton.addEventListener('click', () => {
+  window.location.href = 'index.html';
+});
 
 function gameOver() {
   isGameOver = true;

@@ -4,7 +4,7 @@
   height: 100vh;
   border-radius: 5px;
   overflow: hidden;
-  background-image: url('images/flappy/flappy-background3.svg');
+  background-image: url('images/flappy/flappy-main.svg');
   background-size: cover;
 }
 
