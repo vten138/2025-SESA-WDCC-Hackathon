@@ -55,3 +55,4 @@ dropZone.addEventListener('drop', (e) => {
 
   dropZone.appendChild(newImg);
 });
+

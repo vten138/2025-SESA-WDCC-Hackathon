@@ -452,3 +452,11 @@ a:active {
         transform: translateY(100vh) rotate(360deg);
     }
 }
+
+#cake-completed-bg {
+  position: relative;
+  background-image: url(images/Cake-images-png/cake-completed-bg.svg);
+  background-size: cover;
+  overflow: hidden;
+  height: 100vh;
+}
