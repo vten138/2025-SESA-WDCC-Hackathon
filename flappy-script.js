@@ -97,7 +97,7 @@ function createPipe() {
 }
 const menuButton = document.getElementById('menu-button');
 menuButton.addEventListener('click', () => {
-  window.location.href = 'index.html';
+  window.location.href = 'map.html';
 });
 
 function gameOver() {
@@ -146,7 +146,7 @@ document.getElementById('restart-button').addEventListener('click', () => {
 });
 
 document.getElementById('home-button').addEventListener('click', () => {
-  window.location.href = 'index.html'; // Or your main menu file
+  window.location.href = 'map.html'; // Or your main menu file
 });
 
 function showWinScreen() {
@@ -162,5 +162,5 @@ document.getElementById('restart-win').addEventListener('click', () => {
 });
 
 document.getElementById('home-win').addEventListener('click', () => {
-  window.location.href = 'index.html'; // Or your main menu
+  window.location.href = 'map.html'; // Or your main menu
 });
