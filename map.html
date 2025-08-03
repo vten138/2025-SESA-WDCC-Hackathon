@@ -91,7 +91,7 @@
     }
   
     const startTime = parseInt(localStorage.getItem("carStartTime"), 10);
-    const speed = 0.3; // adjust speed here
+    const speed = 0.27; // adjust speed here
   
     // Draw sine path
     let pathData = "";
@@ -104,21 +104,27 @@
     function moveDiv() {
       const now = Date.now();
       const elapsedTime = now - startTime;
-      let leftPos = (elapsedTime / 16.67) * speed;
-      const maxTravel = 0.6 * window.innerWidth; 
-      leftPos = leftPos % maxTravel;  
+      let leftPos = 30 + (elapsedTime / 16.67) * speed;
+      const maxTravel = 0.7 * window.innerWidth;
+
+      if (leftPos > maxTravel) {
+        adiv.style.display = "none"; // hide car after one loop
+        return;
+      }
+
       const y = 200 * Math.sin(leftPos * 0.009 + 0.3) + window.innerHeight / 2 - 185;
-  
+
       // Calculate slope angle
       const dx = 1;
       const dy = 200 * 0.009 * Math.cos(leftPos * 0.009 + 0.3);
       const rotation = Math.atan2(dy, dx) * (180 / Math.PI);
-  
+
       adiv.style.transform = `translate(${leftPos}px, ${y}px)`;
       carImg.style.transform = `rotate(${rotation}deg)`;
-  
+
       requestAnimationFrame(moveDiv);
     }
+
   
     requestAnimationFrame(moveDiv);
   
