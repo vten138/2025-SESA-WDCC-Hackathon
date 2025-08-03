@@ -63,20 +63,48 @@ button:hover {
 } */
 
 
-#bakery, #clothing, #pet {
+/* #bakery-link,
+#clothing-link,
+#pet-link {
+  pointer-events: none;
+}
+
+#bakery,
+#clothing,
+#pet {
+  pointer-events: auto;
   width: 80vh;
-  /* width: 700px; */
   height: auto;
-  transition: width 0.3s ease;
   display: block;
   z-index: 5;
+  transition: transform 0.2s ease-in-out;
 }
 
 #bakery:hover,
 #clothing:hover,
 #pet:hover {
-  width: 85vh;
-  /* width: 850px; */
+  transform: scale(1.06);
+} */
+
+.building {
+  position: absolute;
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+  pointer-events: none; /* disable for the wrapper */
+}
+
+.building img {
+  width: 80vh;
+  height: auto;
+  display: block;
+  transition: transform 0.2s ease-in-out;
+  pointer-events: auto; /* enable pointer interaction only for visible image part */
+  cursor: pointer;
+}
+
+.building img:hover {
+  transform: scale(1.06);
 }
 
 #castle {

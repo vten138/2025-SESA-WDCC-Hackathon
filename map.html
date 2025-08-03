@@ -23,17 +23,29 @@
     <img id="carImg" src="car.svg" alt="Car" style="width: 30%; height: auto;">
   </div>
 
-  <a id="bakery-link" href="game1.html" style="position: absolute; left: 5%; top: 20%;">
+  <!-- <a id="bakery-link" href="game1.html" style="position: absolute; left: 5%; top: 20%;">
     <img id="bakery" src="images/building_images/6.svg" alt="Go to Game 1">
-  </a>
+  </a> -->
+
+  <div class="building" data-url="game1.html" style="left: 10%; top: 20%;">
+    <img src="images/building_images/6.svg" alt="Go to Game 1">
+  </div>
+
+  <div class="building" data-url="bingo/travelbingo.html" style="left: 45%; top: 2%;">
+    <img src="images/building_images/7.svg" alt="Go to Game 1">
+  </div>
+
+  <div class="building" data-url="flappy-index.html" style="left: 35%; top: 50%;">
+    <img src="images/building_images/8.svg" alt="Go to Game 1">
+  </div>
     
-  <a id="clothing-link" href="bingo/travelbingo.html" style="position: absolute; left: 50%; top: 2%;">
+  <!-- <a id="clothing-link" href="bingo/travelbingo.html" style="position: absolute; left: 50%; top: 2%;">
   <img id="clothing" src="images/building_images/7.svg" alt="Go to Game 2">
 </a>
   
   <a id="pet-link" href="flappy-index.html" style="position: absolute; left: 30%; top: 50%;">
     <img id="pet" src="images/building_images/8.svg" alt="Go to Game 3">
-  </a>
+  </a> -->
 
   <img id="castle" src="images/castle.svg" alt="castle">
   <img id="forest1" src="images/forest.svg" alt="forest">
@@ -130,14 +142,14 @@
   
     // Click sound handling
     const clickSound = document.getElementById('clickSound');
-    ['bakery-link', 'clothing-link', 'pet-link'].forEach(id => {
-      const link = document.getElementById(id);
-      link.addEventListener('click', (e) => {
-        e.preventDefault();
+    document.querySelectorAll('.building img').forEach(img => {
+      img.addEventListener('click', (e) => {
         clickSound.currentTime = 0;
         clickSound.play();
+
+        const url = img.parentElement.dataset.url;
         setTimeout(() => {
-          window.location = link.href;
+          window.location = url;
         }, 150);
       });
     });
