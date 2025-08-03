@@ -38,117 +38,87 @@
   <audio id="clickSound" src="audio/click.wav" preload="auto"></audio>
 
   <script>
-
-    // Detect if the page was reloaded manually (not from a subpage link)
+    // Reset logic on manual reload
     const navType = performance.getEntriesByType("navigation")[0]?.type;
     if (navType === "reload") {
-      // Reset car and timer only on manual reload
-      localStorage.setItem("carLeft", 10);
-      localStorage.setItem("carRotation", 45);
-      const newEndTime = new Date().getTime() + (0.25 / 15) * 60 * 60 * 1000; // 1 minutes
+      localStorage.setItem("carStartTime", Date.now());
+      const newEndTime = new Date().getTime() + (0.25 / 15) * 60 * 60 * 1000; // 1 min
       localStorage.setItem("endTime", newEndTime);
     }
-
-
-    // Set the countdown time: 2 hours from now
+  
+    // Countdown logic
     let endTime = localStorage.getItem("endTime");
-
     if (!endTime) {
-      endTime = new Date().getTime() + (0.25 / 15) * 60 * 60 * 1000; // 1 minutes
+      endTime = new Date().getTime() + (0.25 / 15) * 60 * 60 * 1000;
       localStorage.setItem("endTime", endTime);
     } else {
-      endTime = parseInt(endTime); // convert string back to number
+      endTime = parseInt(endTime);
     }
-
+  
     function updateCountdown() {
       const now = new Date().getTime();
       const timeLeft = endTime - now;
-
       if (timeLeft <= 0) {
         document.getElementById("countdown").textContent = "Time's up!";
         return;
       }
-
+  
       const hours = Math.floor(timeLeft / (1000 * 60 * 60));
       const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-
+  
       document.getElementById("countdown").textContent =
         `${hours.toString().padStart(2, '0')}:${minutes
-          .toString()
-          .padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-
-      setTimeout(updateCountdown, 1000); // update every second
+          .toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+  
+      setTimeout(updateCountdown, 1000);
     }
-
+  
     updateCountdown();
-
+  
+    // Setup references
     const adiv = document.getElementById("mydiv");
     const sinePath = document.getElementById("sine-path");
     const carImg = adiv.querySelector("img");
-
-    let leftPos = parseFloat(localStorage.getItem("carLeft")) || 10;
-    let rotation = parseFloat(localStorage.getItem("carRotation")) || 45;
-
-    adiv.style.transform = `translate(${leftPos}px, ${window.innerHeight / 2 - 180}px)`;
-    instantRotate(rotation);
-    
-    // Draw sine wave path
+  
+    // Initial start time
+    if (!localStorage.getItem("carStartTime")) {
+      localStorage.setItem("carStartTime", Date.now());
+    }
+  
+    const startTime = parseInt(localStorage.getItem("carStartTime"), 10);
+    const speed = 0.3; // adjust speed here
+  
+    // Draw sine path
     let pathData = "";
     for (let x = 0; x <= window.innerWidth; x++) {
       const y = 290 * Math.sin(x * 0.01) + window.innerHeight / 2;
       pathData += (x === 0 ? "M" : "L") + x + "," + y + " ";
     }
     sinePath.setAttribute("d", pathData);
-
-    function instantRotate(angle) {
-      carImg.style.transition = "none";           // Disable transition
-      carImg.style.transform = `rotate(${angle}deg)`;  // Set rotation instantly
-      carImg.offsetHeight;                         // Force reflow to apply immediately
-      carImg.style.transition = "transform 20s ease"; // Restore transition
-    }
-
-    instantRotate(rotation);
-
-    // Animate icon along the same curve
-    let stored = localStorage.getItem("carRotation");
-    rotation = stored !== null ? parseFloat(stored) : 45;
-    leftPos = parseFloat(localStorage.getItem("carLeft")) || 10;
-
-
+  
     function moveDiv() {
-      const downPos = 200 * Math.sin(leftPos * 0.009 + 0.3) + window.innerHeight / 2 - 185;
-
-      // const slope = Math.sin(leftPos * 0.007 + 0.3);
-      // rotation = slope > 0 ? -45 : 45;
-
-      const slope = Math.sin(leftPos * 0.009 + 0.3);
-      
-      if (slope > 0.01) {
-        rotation = -45;
-      } else if (slope < -0.01) {
-        rotation = 45;
-      }
-
-      adiv.style.transform = `translate(${leftPos}px, ${downPos}px)`;
+      const now = Date.now();
+      const elapsedTime = now - startTime;
+      let leftPos = (elapsedTime / 16.67) * speed;
+      const maxTravel = 0.7 * window.innerWidth; 
+      leftPos = leftPos % maxTravel;  
+      const y = 200 * Math.sin(leftPos * 0.009 + 0.3) + window.innerHeight / 2 - 185;
+  
+      // Calculate slope angle
+      const dx = 1;
+      const dy = 200 * 0.009 * Math.cos(leftPos * 0.009 + 0.3);
+      const rotation = Math.atan2(dy, dx) * (180 / Math.PI);
+  
+      adiv.style.transform = `translate(${leftPos}px, ${y}px)`;
       carImg.style.transform = `rotate(${rotation}deg)`;
-
-      leftPos += 0.3;
-      if (leftPos > window.innerWidth - 380) {
-        leftPos = -40;
-        instantRotate(45);
-      }
-
-      // Update localStorage on every frame
-      localStorage.setItem("carLeft", leftPos);
-      localStorage.setItem("carRotation", rotation);
-
+  
       requestAnimationFrame(moveDiv);
     }
-
+  
     requestAnimationFrame(moveDiv);
-
-
+  
+    // Click sound handling
     const clickSound = document.getElementById('clickSound');
     ['bakery-link', 'clothing-link', 'pet-link'].forEach(id => {
       const link = document.getElementById(id);
@@ -156,35 +126,13 @@
         e.preventDefault();
         clickSound.currentTime = 0;
         clickSound.play();
-
         setTimeout(() => {
           window.location = link.href;
-        }, 150); // give sound time to play
+        }, 150);
       });
     });
-
-
-
-
-//     function resetCar() {
-//       localStorage.setItem("carLeft", 10);
-//       localStorage.setItem("carRotation", 45);
-
-//       // Immediately update leftPos and rotation in script's scope
-//       leftPos = 10;
-//       rotation = 45;
-
-//       // Optionally reset the position & rotation of the car immediately
-//       adiv.style.transform = `translate(${leftPos}px, ${window.innerHeight / 2 - 180}px)`;
-//       carImg.style.transform = `rotate(${rotation}deg)`;
-
-//       // Reset timer
-//       const newEndTime = new Date().getTime() + 0.25 * 60 * 60 * 1000; // 15 minutes from now (or change as needed)
-//       localStorage.setItem("endTime", newEndTime);
-//       location.reload();
-// }
-
   </script>
+  
 
 </body>
 </html>
