@@ -49,6 +49,19 @@ a:active {
   background-color: #a5d687;
 }
 
+.chewy-regular {
+  font-family: "Chewy", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
+.dynapuff {
+  font-family: "DynaPuff", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+
 #cake-bg {
   background-color: #e3f2ff;
   overflow: hidden;
@@ -56,7 +69,7 @@ a:active {
 
 #cake-title {
   position: absolute;
-  font-family: monospace;
+  font-family: "DynaPuff";
   font-weight: 900;
   left:1vw;
   top: 0;
@@ -269,7 +282,7 @@ a:active {
   display: none;            /* Hidden by default */
   padding: 12px 35px;
   font-size: 3rem;
-  font-family: sans-serif;
+  font-family: "DynaPuff";
   font-weight: 900;
   color: black;
   background-color: white;
