@@ -4,49 +4,48 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Debug Divas</title>
-  <link rel="stylesheet" href="map.css">
+  <link rel="stylesheet" href="map.css"> <!-- Link to your CSS -->
   <link href="https://fonts.googleapis.com/css2?family=Assistant&family=Jost&family=Lexend:wght@300&display=swap" rel="stylesheet">
 </head>
 <body>
 
+  <!-- <h1>Map</h1> -->
+
   <div id="countdown">Loading...</div>
 
+  <!-- SVG sine wave path -->
   <svg id="sine-svg" width="100%" height="100%">
     <path id="sine-path" d="" stroke="transparent" stroke-width="2" fill="none"/>
   </svg>
 
+  <!-- Moving icon -->
   <div id="mydiv">
     <img id="carImg" src="car.svg" alt="Car" style="width: 30%; height: auto;">
   </div>
 
-  <a id="bakery-link" href="game1.html" style="position: absolute; left: 9%; top: 20%;">
+  <a id="bakery-link" href="game1.html" style="position: absolute; left: 5%; top: 20%;">
     <img id="bakery" src="images/building_images/6.svg" alt="Go to Game 1">
   </a>
     
-  <a id="clothing-link" href="game2.html" style="position: absolute; left: 45%; top: 2%;">
-    <img id="clothing" src="images/building_images/7.svg" alt="Go to Game 2">
-  </a>
+  <a id="clothing-link" href="bingo/travelbingo.html" style="position: absolute; left: 50%; top: 2%;">
+  <img id="clothing" src="images/building_images/7.svg" alt="Go to Game 2">
+</a>
   
   <a id="pet-link" href="flappy-index.html" style="position: absolute; left: 30%; top: 50%;">
     <img id="pet" src="images/building_images/8.svg" alt="Go to Game 3">
   </a>
 
-  <img id="castle" src="images/castle.svg" alt="castle">
-  <img id="forest1" src="images/forest.svg" alt="forest">
-  <img id="forest2" src="images/forest.svg" alt="forest">
-
   <audio id="clickSound" src="audio/click.wav" preload="auto"></audio>
 
   <script>
-    // Reset on reload
+    // Reset logic on manual reload
     const navType = performance.getEntriesByType("navigation")[0]?.type;
     if (navType === "reload") {
       localStorage.setItem("carStartTime", Date.now());
-      localStorage.removeItem("carDone");
-      const newEndTime = new Date().getTime() + (0.25 / 15) * 60 * 60 * 1000;
+      const newEndTime = new Date().getTime() + (0.25 / 15) * 60 * 60 * 1000; // 1 min
       localStorage.setItem("endTime", newEndTime);
     }
-
+  
     // Countdown logic
     let endTime = localStorage.getItem("endTime");
     if (!endTime) {
@@ -55,7 +54,7 @@
     } else {
       endTime = parseInt(endTime);
     }
-
+  
     function updateCountdown() {
       const now = new Date().getTime();
       const timeLeft = endTime - now;
@@ -63,90 +62,63 @@
         document.getElementById("countdown").textContent = "Time's up!";
         return;
       }
+  
       const hours = Math.floor(timeLeft / (1000 * 60 * 60));
       const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-
+  
       document.getElementById("countdown").textContent =
         `${hours.toString().padStart(2, '0')}:${minutes
           .toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+  
       setTimeout(updateCountdown, 1000);
     }
-
+  
     updateCountdown();
-
+  
+    // Setup references
     const adiv = document.getElementById("mydiv");
     const sinePath = document.getElementById("sine-path");
     const carImg = adiv.querySelector("img");
-
+  
+    // Initial start time
     if (!localStorage.getItem("carStartTime")) {
       localStorage.setItem("carStartTime", Date.now());
     }
-
+  
     const startTime = parseInt(localStorage.getItem("carStartTime"), 10);
-    const speed = 0.3;
-
-    // Draw responsive sine path
-    // function drawSine() {
-    //   let pathData = "";
-    //   for (let x = 0; x <= window.innerWidth; x++) {
-    //     const y = 290 * Math.sin(x * 0.01) + window.innerHeight / 2;
-    //     pathData += (x === 0 ? "M" : "L") + x + "," + y + " ";
-    //   }
-    //   sinePath.setAttribute("d", pathData);
-    // }
-
-    function drawSine() {
-      const width = 1000;  // fixed width in pixels (adjust to your desired path length)
-      const height = 600;  // fixed height
-      const amplitude = 290;  // fixed amplitude in pixels
-      const frequency = 0.01; // fixed frequency
-
-      let pathData = "";
-      for (let x = 0; x <= width; x++) {
-        const y = amplitude * Math.sin(x * frequency) + height / 2;
-        pathData += (x === 0 ? "M" : "L") + x + "," + y + " ";
-      }
-      sinePath.setAttribute("d", pathData);
-
-      // Also update SVG size to match
-      sinePath.parentElement.setAttribute("width", width);
-      sinePath.parentElement.setAttribute("height", height);
+    const speed = 0.3; // adjust speed here
+  
+    // Draw sine path
+    let pathData = "";
+    for (let x = 0; x <= window.innerWidth; x++) {
+      const y = 290 * Math.sin(x * 0.01) + window.innerHeight / 2;
+      pathData += (x === 0 ? "M" : "L") + x + "," + y + " ";
     }
-
-    drawSine();
-    window.addEventListener("resize", drawSine);
-
+    sinePath.setAttribute("d", pathData);
+  
     function moveDiv() {
       const now = Date.now();
       const elapsedTime = now - startTime;
-      const maxTravel = 0.65 * window.innerWidth;
       let leftPos = (elapsedTime / 16.67) * speed;
-
-      if (leftPos >= maxTravel) {
-        localStorage.setItem("carDone", "true");
-        adiv.style.display = "none";
-        return;
-      }
-
+      const maxTravel = 0.7 * window.innerWidth; 
+      leftPos = leftPos % maxTravel;  
       const y = 200 * Math.sin(leftPos * 0.009 + 0.3) + window.innerHeight / 2 - 185;
+  
+      // Calculate slope angle
       const dx = 1;
       const dy = 200 * 0.009 * Math.cos(leftPos * 0.009 + 0.3);
       const rotation = Math.atan2(dy, dx) * (180 / Math.PI);
-
+  
       adiv.style.transform = `translate(${leftPos}px, ${y}px)`;
       carImg.style.transform = `rotate(${rotation}deg)`;
-
+  
       requestAnimationFrame(moveDiv);
     }
-
-    if (localStorage.getItem("carDone") === "true") {
-      adiv.style.display = "none";
-    } else {
-      requestAnimationFrame(moveDiv);
-    }
-
-    // Click sound
+  
+    requestAnimationFrame(moveDiv);
+  
+    // Click sound handling
     const clickSound = document.getElementById('clickSound');
     ['bakery-link', 'clothing-link', 'pet-link'].forEach(id => {
       const link = document.getElementById(id);
@@ -160,5 +132,7 @@
       });
     });
   </script>
+  
+
 </body>
 </html>
