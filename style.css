@@ -423,3 +423,19 @@ a:active {
   right: 80vw;
   z-index: 15;
 }
+
+.confetti-piece {
+    position: absolute;
+    top: -20px;
+    width: 12px;
+    height: 24px;
+    opacity: 0.8;
+    border-radius: 4px;
+    animation: confetti-fall 2.5s linear infinite;
+}
+
+@keyframes confetti-fall {
+    to {
+        transform: translateY(100vh) rotate(360deg);
+    }
+}
