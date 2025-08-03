@@ -35,6 +35,10 @@
     <img id="pet" src="images/building_images/8.svg" alt="Go to Game 3">
   </a>
 
+  <img id="castle" src="images/castle.svg" alt="castle">
+  <img id="forest1" src="images/forest.svg" alt="forest">
+  <img id="forest2" src="images/forest.svg" alt="forest">
+
   <audio id="clickSound" src="audio/click.wav" preload="auto"></audio>
 
   <script>
@@ -101,7 +105,7 @@
       const now = Date.now();
       const elapsedTime = now - startTime;
       let leftPos = (elapsedTime / 16.67) * speed;
-      const maxTravel = 0.7 * window.innerWidth; 
+      const maxTravel = 0.6 * window.innerWidth; 
       leftPos = leftPos % maxTravel;  
       const y = 200 * Math.sin(leftPos * 0.009 + 0.3) + window.innerHeight / 2 - 185;
   
