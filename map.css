@@ -85,7 +85,7 @@ button:hover {
   right: -13%;
   width: 50vw;
   height: auto;
-  z-index: 5;
+  z-index: 15;
 }
 
 #forest1 {
@@ -94,7 +94,7 @@ button:hover {
   bottom: 40%;
   width: 50vw;
   height: auto;
-  z-index: 5;
+  z-index: 15;
 }
 
 #forest2 {
@@ -103,5 +103,5 @@ button:hover {
   bottom: 27%;
   width: 50vw;
   height: auto;
-  z-index: 6;
+  z-index: 16;
 }
