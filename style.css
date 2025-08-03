@@ -283,7 +283,7 @@ a:active {
   display: none;            /* Hidden by default */
   padding: 12px 35px;
   font-size: 3rem;
-  font-family: sans-serif;
+  font-family: "DynaPuff";
   font-weight: 900;
   color: black;
   background-color: white;
@@ -386,4 +386,28 @@ a:active {
   top: 0;
   left: 0;
   width: 80px; /* adjust as needed */
+}
+
+#cake-completed-bg {
+  position: relative;
+  background-image: url(images/Cake-images-png/cake-completed-bg.svg);
+  background-size: cover;
+  overflow: hidden;
+  height: 100vh;
+}
+
+.confetti-piece {
+    position: absolute;
+    top: -20px;
+    width: 12px;
+    height: 24px;
+    opacity: 0.8;
+    border-radius: 4px;
+    animation: confetti-fall 2.5s linear infinite;
+}
+
+@keyframes confetti-fall {
+    to {
+        transform: translateY(100vh) rotate(360deg);
+    }
 }
