@@ -47,7 +47,7 @@ button:hover {
 #countdown {
   font-size: 2.5vw; /* Scales with screen width */
   color: white;
-  background-color: rgba(68, 68, 119, 0.5);
+  background-color: rgba(68, 119, 95, 0.5);
   padding: 1vh 0.0001vw;
   display: inline-block;
   text-align: center;
