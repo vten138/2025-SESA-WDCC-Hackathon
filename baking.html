@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bake A Cake</title>
+  <link rel="stylesheet" href="bake-styles.css">  <!-- Link to your CSS -->
+  <link href="https://fonts.googleapis.com/css2?family=Assistant&family=Jost&family=Lexend:wght@300&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chewy&family=DynaPuff:wght@400..700&display=swap" rel="stylesheet">
+</head>
+<body id="baking-bg">
+    <h2 id="cake-title">Bake A Cake - Bake It</h2>
+    <div class="baking-container">
+        <img class="table-left" src="images/Cake-images-png/table.png">
+        <img class = "oven" id="oven-closed" src="images/Cake-images-png/oven-closed.png">
+        <img class = "drag-image" id="unbaked-cake" draggable="true" src="images/Cake-images-png/unbaked-cake.png">
+        <img class = "drag-image" id="oven-mitt" src="images/Cake-images-png/oven-mitt.png">
+        <img id="baked-cake" src="images/Cake-images-png/cake.png">
+    </div>
+    <div id="baking-popup">
+      <img src="images/Cake-images-png/baking-popup.png" alt="Baking...">
+    </div>
+      <button id="next-step-button" type="button">
+      Next step &#9654;
+      </button>
+
+</body>
+ <script src="baking.js"></script>
+</html>

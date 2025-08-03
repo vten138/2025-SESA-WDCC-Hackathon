@@ -1,0 +1,462 @@
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;                          /* Full viewport height */
+  display: flex;                         /* Enable Flexbox */
+  justify-content: center;              /* Center horizontally */
+  align-items: center;                  /* Center vertically */
+  flex-direction: column;               /* Stack content vertically */
+  background-color: #FCFAF9;
+  color: black;
+  font-family: 'Assistant', sans-serif;
+  text-decoration: none;
+}
+
+h1 {
+  font-family: 'Lexend', sans-serif;
+  font-size: 4rem;
+}
+
+h2 {
+  font-size: 3rem;
+  font-weight: 900;
+  font-family: sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+a:active {
+  color: white;
+}
+
+.button {
+  background-color: #a5d687; 
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 1.3rem;
+  border-radius: 8px;
+  text-decoration: none;
+  cursor: pointer;
+  font-family: 'Lexend', sans-serif;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: #a5d687;
+}
+
+.chewy-regular {
+  font-family: "Chewy", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
+.dynapuff {
+  font-family: "DynaPuff", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+
+#cake-bg {
+  background-color: #e3f2ff;
+  overflow: hidden;
+}
+
+#cake-title {
+  position: absolute;
+  font-family: "DynaPuff";
+  font-weight: 900;
+  left:1vw;
+  top: -2.5vh;
+}
+
+#cake-categories {
+  width: 70%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  gap: 30px;
+}
+
+.cake-div-lrg {
+  width: 90%;
+  height: 40vw;
+  margin: 10px;
+  background-color: #79a5d6;
+  border: 5px solid #79a5d6;
+  border-radius: 30px;
+}
+
+.cake-div-lrg:hover {
+  border: 10px solid white;
+}
+
+.cake-div-sml:hover {
+  border: 10px solid #79a5d6;
+}
+
+.cake-div-sml {
+  width: 25%;
+  height: 25vw;
+  background-color: #79a5d6;
+  margin: 10px;
+  border: 5px solid #79a5d6;
+  border-radius: 30px;
+}
+
+.cake-sml-img {
+  width: 12vw;
+  padding: 25px;
+}
+
+.cake-lrg-img {
+  width: 25vw;
+  padding: 30px;
+}
+
+.cake-txt {
+  font-size: 2rem;
+  font-family: sans-serif;
+  font-weight: 800;
+  text-align: center;
+  
+}
+
+#blue-bg {
+  position: absolute;
+  top: 15vh;
+  background: #79a5d6;
+  border-radius: 30px;
+  width: 90%;
+  height: 80%;
+  z-index: 0;
+}
+
+.table {
+  position: absolute;
+  top: 70vh;
+  width: 70vw;
+}
+
+.ingredients {
+  width: 170px;
+  height: auto;
+  gap: 10px;
+}
+
+#milk {
+  position: absolute;
+  left: 2vw;
+  width: 130px;
+}
+
+#sugar {
+  position: absolute;
+  left: 40vw;
+  top: -5vh;
+  width: 120px;
+}
+#bowl {
+  position: absolute;
+  left: 20vw;
+  top: 5vh;
+  width: 230px;
+  height: auto;
+  gap: 10px;
+}
+#flour {
+  position: absolute;
+  left: 45vw;
+  top: 0vh;
+}
+
+#whisk {
+  position: absolute;
+  left: 35vw;
+  top: 10vh;
+  width: 160px;
+  cursor: grab;
+  transition: top 0.5s ease, left 0.5s ease;
+}
+
+.stirring {
+  animation: stir 2.5s ease-in-out;
+  transform-origin: center center;
+}
+
+@keyframes stir {
+  0%   { transform: translateX(0) scaleX(1); }
+  25%  { transform: translateX(-40px) scaleX(-1); }
+  50%  { transform: translateX(40px) scaleX(1); }
+  75%  { transform: translateX(-40px) scaleX(-1); }
+  100% { transform: translateX(0) scaleX(1); }
+}
+
+.ingredients-container {
+  width: 60vw;
+  position: absolute;
+  top: 62vh;
+  height: 30vh;
+  z-index: 6;
+}
+
+.highlight {
+  border-radius: 10px;
+  box-shadow: 10px 10px 10px #ffda3a,
+  -10px -10px 10px #ffda3a;
+}
+
+.drag-image {
+  width: 100px;
+  cursor: grab;
+}
+
+
+#baking-bg {
+  position: relative;
+  background-image: url(images/Cake-images-png/baking-background.svg);
+  background-size: cover;
+  overflow: hidden;
+  height: 100vh;
+}
+
+.baking-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+}
+
+.table-left {
+  position: absolute;
+  top: 65vh;
+  left: -10vw;
+  width: 55vw;
+}
+
+.oven {
+  position: absolute;
+  top: 30vh;
+  left: 55vw;
+  width: 35vw;
+  object-fit: contain;
+}
+
+#oven-mitt {
+  position: absolute;
+  top: 55vh;
+  left: 3vw;
+  width: 10vw;
+}
+
+#unbaked-cake {
+  position: absolute;
+  top: 55vh;
+  left: 17vw;
+  width: 17.5vw;
+}
+
+#baking-popup {
+  display: none; 
+  position: fixed; 
+  top: 30vh; 
+  left: 25vw; 
+  width: 20vw;
+}
+
+#baked-cake {
+  display: none;
+  position: absolute;
+  top: 55vh;
+  left: 17vw;
+  width: 17.5vw;
+}
+
+#next-step-button {
+  display: none;            /* Hidden by default */
+  padding: 12px 35px;
+  font-size: 3rem;
+  font-family: "DynaPuff";
+  font-weight: 900;
+  color: black;
+  background-color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  border-radius: 120px;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  opacity: 0;
+  transform: translateY(20px);
+  position: absolute;
+  top: 80vh;
+  right: 8%;
+  z-index: 10;              /* Ensure it appears above other elements */
+}
+
+.show-btn {
+  display: block !important; /* Override inline styles */
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+  font-size: 1.5rem !important;
+}
+
+/* When showing the button */
+#next-step-button.show {
+  display: inline-block !important;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Optional: hover effect */
+#next-step-button:hover {
+  background-color: #ff9661;
+}
+
+.deco {
+  height: auto;
+  gap: 10px;
+  position: relative;
+}
+
+#cake {
+  position: absolute;
+  left: 40vw;
+  top: 55vh;
+  width: 14vw;
+}
+
+#cake-stand {
+  position: absolute;
+  left: 40vw;
+  top: 71vh;
+  width: 14vw;
+}
+
+.deco.candle {
+  width: 18vw;
+  height: auto;
+  left: -6vw;
+  top: 10vh;
+  gap: 0;
+}
+
+#candle2 {
+  left: -20vw;
+}
+
+#candle3 {
+  left: -33vw;
+}
+
+#icing2 {
+  left: 27vw;
+}
+
+#icing3 {
+  left: 22vw;
+  width: 12vw;
+}
+
+.deco.icing {
+  width: 13vw;
+  height: auto;
+  left: 33vw;
+  top: -15vh;
+  gap: 0;
+}
+
+#strawberry {
+  width: 5vw;
+  height: auto;
+  left: 2vw;
+  top: -5vh;
+  rotate: 45deg;
+}
+
+
+#drop-zone .dropped-img {
+  width: 150px;
+  filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3));
+}
+
+.highlight {
+  outline: 2px dashed #ff69b4;
+  background-color: rgba(255, 192, 203, 0.2);
+}
+
+.dropped-img {
+  width: 40vw;
+  position: absolute;
+  pointer-events: none;
+  z-index: 15;
+}
+
+#drop-zone {
+  position: absolute;
+  top: 55vh; /* Adjust to your cake position */
+  left: 40vw;
+  width: 13.5vw;
+  height: 20vh;
+  z-index: 10;
+}
+
+.dropped-img.icing2 {
+  position: absolute;
+  width: 30vw;
+}
+
+/* Unique styles by type */
+.dropped-icing {
+  filter: drop-shadow(2px 4px 4px rgba(0, 0, 0, 0.2));
+  width: 400px;
+  height: auto;
+  transform: scale(1.35);
+  position: absolute;
+  right: 80vw;
+  top: 1vh;
+}
+
+.dropped-candle {
+  z-index: 15;
+  position: relative;
+  top: 200px;
+}
+
+.dropped-strawberry {
+  opacity: 0.9;
+  position: absolute;
+  top: -10vh;
+  right: 80vw;
+  z-index: 15;
+}
+
+.confetti-piece {
+    position: absolute;
+    top: -20px;
+    width: 12px;
+    height: 24px;
+    opacity: 0.8;
+    border-radius: 4px;
+    animation: confetti-fall 2.5s linear infinite;
+}
+
+@keyframes confetti-fall {
+    to {
+        transform: translateY(100vh) rotate(360deg);
+    }
+}
+
+#cake-completed-bg {
+  position: relative;
+  background-image: url(images/Cake-images-png/cake-completed-bg.svg);
+  background-size: cover;
+  overflow: hidden;
+  height: 100vh;
+}
