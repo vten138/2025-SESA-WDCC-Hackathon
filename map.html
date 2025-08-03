@@ -13,9 +13,6 @@
 
   <div id="countdown">Loading...</div>
 
-  <button onclick="resetCar()">Reset Car</button>
-
-
   <!-- SVG sine wave path -->
   <svg id="sine-svg" width="100%" height="100%">
     <path id="sine-path" d="" stroke="transparent" stroke-width="2" fill="none"/>
@@ -23,7 +20,7 @@
 
   <!-- Moving icon -->
   <div id="mydiv">
-    <img id="carImg" src="car.svg" alt="Car" style="width: 500px; height: auto;">
+    <img id="carImg" src="car.svg" alt="Car" style="width: 30%; height: auto;">
   </div>
 
   <a id="bakery-link" href="game1.html" style="position: absolute; left: 5%; top: 20%;">
@@ -42,11 +39,22 @@
 
   <script>
 
+    // Detect if the page was reloaded manually (not from a subpage link)
+    const navType = performance.getEntriesByType("navigation")[0]?.type;
+    if (navType === "reload") {
+      // Reset car and timer only on manual reload
+      localStorage.setItem("carLeft", 10);
+      localStorage.setItem("carRotation", 45);
+      const newEndTime = new Date().getTime() + (0.25 / 15) * 60 * 60 * 1000; // 1 minutes
+      localStorage.setItem("endTime", newEndTime);
+    }
+
+
     // Set the countdown time: 2 hours from now
     let endTime = localStorage.getItem("endTime");
 
     if (!endTime) {
-      endTime = new Date().getTime() + 0.25 * 60 * 60 * 1000; // 15 minutes
+      endTime = new Date().getTime() + (0.25 / 15) * 60 * 60 * 1000; // 1 minutes
       localStorage.setItem("endTime", endTime);
     } else {
       endTime = parseInt(endTime); // convert string back to number
@@ -78,6 +86,12 @@
     const adiv = document.getElementById("mydiv");
     const sinePath = document.getElementById("sine-path");
     const carImg = adiv.querySelector("img");
+
+    let leftPos = parseFloat(localStorage.getItem("carLeft")) || 10;
+    let rotation = parseFloat(localStorage.getItem("carRotation")) || 45;
+
+    adiv.style.transform = `translate(${leftPos}px, ${window.innerHeight / 2 - 180}px)`;
+    instantRotate(rotation);
     
     // Draw sine wave path
     let pathData = "";
@@ -91,34 +105,38 @@
       carImg.style.transition = "none";           // Disable transition
       carImg.style.transform = `rotate(${angle}deg)`;  // Set rotation instantly
       carImg.offsetHeight;                         // Force reflow to apply immediately
-      carImg.style.transition = "transform 40s ease"; // Restore transition
+      carImg.style.transition = "transform 20s ease"; // Restore transition
     }
 
-    let savedRotation = parseFloat(localStorage.getItem("carRotation")) || 45;
-    instantRotate(savedRotation);
+    instantRotate(rotation);
 
     // Animate icon along the same curve
-    let leftPos = parseFloat(localStorage.getItem("carLeft")) || 10;
-    let rotation = parseFloat(localStorage.getItem("carRotation")) || 45;
+    let stored = localStorage.getItem("carRotation");
+    rotation = stored !== null ? parseFloat(stored) : 45;
+    leftPos = parseFloat(localStorage.getItem("carLeft")) || 10;
 
 
     function moveDiv() {
-      const sineValue = Math.sin(leftPos * 0.007 + 0.3);
-      const downPos = 200 * Math.sin(leftPos * 0.009 + 0.3) + window.innerHeight / 2 - 180;
+      const downPos = 200 * Math.sin(leftPos * 0.009 + 0.3) + window.innerHeight / 2 - 185;
 
-      if (sineValue > 0.8) {
+      // const slope = Math.sin(leftPos * 0.007 + 0.3);
+      // rotation = slope > 0 ? -45 : 45;
+
+      const slope = Math.sin(leftPos * 0.009 + 0.3);
+      
+      if (slope > 0.01) {
         rotation = -45;
-      } else if (sineValue < -0.8) {
+      } else if (slope < -0.01) {
         rotation = 45;
       }
 
       adiv.style.transform = `translate(${leftPos}px, ${downPos}px)`;
       carImg.style.transform = `rotate(${rotation}deg)`;
 
-      leftPos += 0.05;
+      leftPos += 0.3;
       if (leftPos > window.innerWidth - 380) {
-        leftPos = -100;
-        rotation = 45;
+        leftPos = -40;
+        instantRotate(45);
       }
 
       // Update localStorage on every frame
@@ -148,23 +166,23 @@
 
 
 
-    function resetCar() {
-      localStorage.setItem("carLeft", 10);
-      localStorage.setItem("carRotation", 45);
+//     function resetCar() {
+//       localStorage.setItem("carLeft", 10);
+//       localStorage.setItem("carRotation", 45);
 
-      // Immediately update leftPos and rotation in script's scope
-      leftPos = 10;
-      rotation = 45;
+//       // Immediately update leftPos and rotation in script's scope
+//       leftPos = 10;
+//       rotation = 45;
 
-      // Optionally reset the position & rotation of the car immediately
-      adiv.style.transform = `translate(${leftPos}px, ${window.innerHeight / 2 - 180}px)`;
-      carImg.style.transform = `rotate(${rotation}deg)`;
+//       // Optionally reset the position & rotation of the car immediately
+//       adiv.style.transform = `translate(${leftPos}px, ${window.innerHeight / 2 - 180}px)`;
+//       carImg.style.transform = `rotate(${rotation}deg)`;
 
-      // Reset timer
-      const newEndTime = new Date().getTime() + 0.25 * 60 * 60 * 1000; // 15 minutes from now (or change as needed)
-      localStorage.setItem("endTime", newEndTime);
-      location.reload();
-}
+//       // Reset timer
+//       const newEndTime = new Date().getTime() + 0.25 * 60 * 60 * 1000; // 15 minutes from now (or change as needed)
+//       localStorage.setItem("endTime", newEndTime);
+//       location.reload();
+// }
 
   </script>
 
