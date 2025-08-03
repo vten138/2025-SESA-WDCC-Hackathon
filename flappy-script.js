@@ -91,7 +91,7 @@ function createPipe() {
         console.warn("Audio play failed:", err)
       );
 
-      if (score === 5) showWinScreen();
+      if (score === 3) showWinScreen();
     }
   }, 20);
 }
