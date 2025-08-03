@@ -196,4 +196,6 @@ function startAutoBakeTimer() {
 nextStepBtn.addEventListener("click", () => {
   console.log("Next step button clicked!");
   nextStepBtn.classList.remove("show");
+  window.location.href = "game1-title3.html";
 });
+
