@@ -307,7 +307,6 @@ a:active {
 }
 
 .deco {
-  width: 100px;
   height: auto;
   gap: 10px;
   position: relative;
@@ -315,61 +314,118 @@ a:active {
 
 #cake {
   position: absolute;
-  left: 23vw;
-  top: -5vh;
+  left: 40vw;
+  top: 55vh;
   width: 14vw;
 }
 
 #cake-stand {
   position: absolute;
-  left: 23vw;
-  top: 3vh;
+  left: 40vw;
+  top: 71vh;
   width: 14vw;
 }
 
 .deco.candle {
-  width: 80px;
+  width: 18vw;
   height: auto;
-  left: 5vw;
-  top: 15vh;
+  left: -6vw;
+  top: 10vh;
+  gap: 0;
+}
+
+#candle2 {
+  left: -20vw;
+}
+
+#candle3 {
+  left: -33vw;
+}
+
+#icing2 {
+  left: 27vw;
+}
+
+#icing3 {
+  left: 22vw;
+  width: 12vw;
 }
 
 .deco.icing {
-  width: 70px;
+  width: 13vw;
   height: auto;
-  left: 38vw;
-  top: -8vh;
+  left: 33vw;
+  top: -15vh;
+  gap: 0;
 }
 
 #strawberry {
-  width: 50px;
+  width: 5vw;
   height: auto;
-  left: 21vw;
-  top: 7vh;
+  left: 2vw;
+  top: -5vh;
   rotate: 45deg;
 }
 
-.cake-drop-zone {
-  width: 185px;
-  height: 180px;
-  position: absolute;
-  left: 23.5vw;
-  top: -10vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  pointer-events: auto;
-  z-index: 10;
+
+#drop-zone .dropped-img {
+  width: 150px;
+  filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3));
 }
 
-.cake-drop-zone.highlight {
-  border: 2px dashed #ff69b4;
-  background-color: rgba(255, 105, 180, 0.1);
+.highlight {
+  outline: 2px dashed #ff69b4;
+  background-color: rgba(255, 192, 203, 0.2);
 }
 
 .dropped-img {
+  width: 40vw;
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 80px; /* adjust as needed */
+  pointer-events: none;
+  z-index: 15;
+}
+
+#drop-zone {
+  position: absolute;
+  top: 55vh; /* Adjust to your cake position */
+  left: 40vw;
+  width: 13.5vw;
+  height: 20vh;
+  z-index: 10;
+}
+
+.dropped-img.icing2 {
+  position: absolute;
+  width: 30vw;
+}
+
+.dropped-img.candle2 {
+  position: absolute;
+  width: 20vw;
+  top: 90vh;
+}
+
+/* Unique styles by type */
+.dropped-icing {
+  filter: drop-shadow(2px 4px 4px rgba(0, 0, 0, 0.2));
+  width: 400px;
+  height: auto;
+  transform: scale(1.35);
+  position: absolute;
+  right: 80vw;
+  top: 1vh;
+}
+
+.dropped-candle {
+  z-index: 15;
+  position: relative;
+  top: 200px;
+}
+
+.dropped-strawberry {
+  opacity: 0.9;
+  position: absolute;
+  top: -10vh;
+  right: 80vw;
+  z-index: 15;
 }

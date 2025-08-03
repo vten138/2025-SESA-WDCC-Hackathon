@@ -4,28 +4,41 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bake A Cake - Decorate It</title>
-  <link rel="stylesheet" href="style.css"> <!-- Link to your CSS -->
+  <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Assistant&family=Jost&family=Lexend:wght@300&display=swap" rel="stylesheet">
 </head>
 <body id="cake-bg">
-    <div id="blue-bg"> </div>
-    <h2 id="cake-title">Bake A Cake - Decorate It</h2>
-    <img class="table" src="images/Cake-images-png/table.png">
-    <div class="ingredients-container">
-        <img class="deco set1 candle" id="candle1" draggable="true" src="images/Cake-images-png/oven-mitt.png">
-        <img class="deco set1 candle" id="candle2" draggable="true" src="images/Cake-images-png/oven-mitt.png">
-        <img class="deco set1 candle" id="candle3" draggable="true" src="images/Cake-images-png/oven-mitt.png">
-        <img id="cake-stand" src="images/Cake-images-png/23.png">
-        <img class="tools" id="cake" src="images/Cake-images-png/cake.png">
-        <div class="cake-drop-zone" id="drop-zone-1"></div>
-        <div class="cake-drop-zone"id="drop-zone-2"></div>
-        <div class="cake-drop-zone"id="drop-zone-3"></div>
-        <img class="deco set2 icing" id="icing1" draggable="true" src="images/Cake-images-png/bowl.png">
-        <img class="deco set2 icing" id="icing2" draggable="true" src="images/Cake-images-png/bowl.png">
-        <img class="deco set2 icing" id="icing3" draggable="true" src="images/Cake-images-png/bowl.png">
-        <img class="deco set3" id="strawberry" draggable="true" src="images/Cake-images-png/sugar.png">
-    </div>
-    <a href="cake-finished.html"><button id="next-step-button" class="show-btn">Finish Decorating ►</button></a>
-    <script src="deco.js"></script>
+  <div id="blue-bg"></div>
+
+  <h2 id="cake-title">Bake A Cake - Decorate It</h2>
+  <img class="table" src="images/Cake-images-png/table.png" alt="table">
+
+  <div class="ingredients-container">
+    <!-- Set 1: Candles -->
+    <img class="deco draggable candle" id="candle1" draggable="true" src="images/Cake-images-png/cake-decorating/21.png" alt="candle1">
+    <img class="deco draggable candle" id="candle2" draggable="true" src="images/Cake-images-png/cake-decorating/22.png" alt="candle2">
+    <img class="deco draggable candle" id="candle3" draggable="true" src="images/Cake-images-png/cake-decorating/23.png" alt="candle3">
+
+    <!-- Set 2: Icings -->
+    <img class="deco draggable icing" id="icing1" draggable="true" src="images/Cake-images-png/cake-decorating/18.png" alt="icing1">
+    <img class="deco draggable icing" id="icing2" draggable="true" src="images/Cake-images-png/cake-decorating/19.png" alt="icing2">
+    <img class="deco draggable icing" id="icing3" draggable="true" src="images/Cake-images-png/cake-decorating/20.png" alt="icing3">
+
+    <!-- Set 3: Toppings -->
+    <img class="deco draggable" id="strawberry" draggable="true" src="images/Cake-images-png/cake-decorating/24.png" alt="strawberry">
+  </div>
+
+  <!-- Cake and Drop Zones -->
+  <img id="cake-stand" src="images/Cake-images-png/cake-decorating/17.png" alt="cake stand">
+  <img class="tools" id="cake" src="images/Cake-images-png/cake.png" alt="cake base">
+
+  <!-- Drop zones (positioned absolutely in CSS) -->
+  <div id="drop-zone"></div>
+
+  <a href="cake-finished.html">
+    <button id="next-step-button" class="show-btn">Finish Decorating ►</button>
+  </a>
+
+  <script src="deco.js"></script>
 </body>
 </html>
