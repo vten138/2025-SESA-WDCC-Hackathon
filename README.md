@@ -1,6 +1,6 @@
 # 🚗 Kiwi Roadtrip Games - Debug Divas
 
-A collection of interactive road trip-themed mini-games designed for entertainment during travel. Created by the Debug Divas team for the 2025 SESA x WDCC Hackathon.
+A collection of interactive road trip-themed mini-games designed for entertainment during travel. Created by the Debug Divas team for the 2025 Hackathon.
 
 ## 🎮 Overview
 
@@ -63,11 +63,16 @@ A modified version of the classic Flappy Bird game:
 
 ## 🚀 Getting Started
 
-### Prerequisites
+### Play Online
+The game is available online at: **https://vten138.github.io/2025-SESA-WDCC-Hackathon/**
+
+### Local Development
+
+#### Prerequisites
 - Node.js (version 14 or higher)
 - Modern web browser with JavaScript enabled
 
-### Installation
+#### Installation
 1. Clone the repository:
    ```bash
    git clone https://github.com/vten138/2025-Hackathon.git
@@ -89,7 +94,7 @@ A modified version of the classic Flappy Bird game:
    http://localhost:3000
    ```
 
-### Alternative Setup
+#### Alternative Setup
 For development or testing without Node.js:
 - Open `index.html` directly in a web browser
 - Note: Some features may require a local server for full functionality
